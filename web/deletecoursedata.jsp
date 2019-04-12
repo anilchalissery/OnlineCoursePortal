@@ -14,7 +14,9 @@
             String c_id=request.getParameter("c_id");
             
         DAL.DBConnect.ExecuteQuery("DELETE FROM `course` WHERE c_id='"+c_id+"'");
-      response.sendRedirect("PrintCourseData.jsp");
+      
+session.setAttribute("msg","sucess");
+response.sendRedirect("coursedatatable.jsp");
 %>
     </head>
     <body>

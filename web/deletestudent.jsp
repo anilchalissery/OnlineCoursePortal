@@ -15,7 +15,7 @@
         String s_id=request.getParameter("s_id");
         
         DAL:DBConnect.ExecuteQuery("DELETE FROM `student` WHERE s_id="+s_id);
-        
+        session.setAttribute("msg","sucess");
          response.sendRedirect("studenttables.jsp");
         %>
     </head>

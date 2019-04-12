@@ -14,7 +14,8 @@
             String co_id=request.getParameter("co_id");
             
         DAL.DBConnect.ExecuteQuery("DELETE FROM `course_opted` WHERE co_id='"+co_id+"'");
-      response.sendRedirect("PrintCourseOptData.jsp");
+session.setAttribute("msg","sucess");      
+response.sendRedirect("courseoptedtable.jsp");
 %>
     </head>
     <body>

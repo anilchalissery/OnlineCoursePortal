@@ -17,9 +17,10 @@
         String duration=request.getParameter("duration");
         String dept=request.getParameter("dept");
         String datafile=request.getParameter("datafile");
-        String i_id="2";
+        String i_id=request.getParameter("i_id");
         DAL.DBConnect.ExecuteQuery("UPDATE `course` SET `c_name`='"+c_name+"',`about_course`='"+about_course+"',`i_id`='"+i_id+"',`duration`='"+duration+"',`dept`='"+dept+"',`datafile`='"+datafile+"' WHERE c_id='"+c_id+"'");
-      response.sendRedirect("PrintCourseData.jsp");
+session.setAttribute("msg","sucess");      
+response.sendRedirect("coursedatatable.jsp");
 %>
     </head>
     <body>

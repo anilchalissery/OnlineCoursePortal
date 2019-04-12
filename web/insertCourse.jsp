@@ -4,7 +4,18 @@
 <html lang="en">
 
 <head>
-	<title>Elements | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Insert Course data table | Online Course Portal</title>
+        <%
+		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
+				String uid = (String)session.getAttribute("user");
+				if (uid == null)
+				{
+		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
+					 <jsp:forward page="Login.jsp"/>
+		<%	
+				}
+				
+		%> 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -29,7 +40,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"><img src="assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -41,9 +52,9 @@
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				<div class="navbar-btn navbar-btn-right">
+				<!--<div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div>
+				</div>-->
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -70,12 +81,12 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 						<!-- <li>
@@ -107,11 +118,11 @@
 								</div>
 								<div class="panel-body">
 									<form action="course_regaction.jsp" method="post">
-									<input type="text" class="form-control" placeholder="course name" name="c_name">
+									<input type="text" class="form-control" placeholder="course name" name="c_name" required>
 									<br>
-                                                                        <textarea class="form-control" placeholder="about course" rows="4"></textarea>
+                                                                        <textarea class="form-control" placeholder="about course" rows="4" required></textarea>
                                                                         <br>
-                                                                        <input type="text" class="form-control" placeholder="duration" name="duration">
+                                                                        <input type="text" class="form-control" placeholder="duration" name="duration" required>
 									<br>
                                                                  
                 <div class="input-group">

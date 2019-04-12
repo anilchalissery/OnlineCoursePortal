@@ -12,7 +12,18 @@
 <html lang="en">
 
 <head>
-	<title>Tables | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Department Table | Online Course Portal</title>
+        <%
+		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
+				String uid = (String)session.getAttribute("user");
+				if (uid == null)
+				{
+		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
+					 <jsp:forward page="Login.jsp"/>
+		<%	
+				}
+				
+		%> 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -37,7 +48,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"><img src="assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -49,9 +60,9 @@
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				<div class="navbar-btn navbar-btn-right">
+				<!--<div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div>
+				</div>-->
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -78,12 +89,12 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 						<!-- <li>
@@ -100,9 +111,24 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Tables</h3>
+				<!--	<h3 class="page-title">Tables</h3> -->
 					
 					<div class="row">
+                                            
+                                            <% 
+                                             try
+                                             {
+                                             String msg = (String)session.getAttribute("msg");
+                                         if(msg.equals("sucess"))
+                                         {
+                                        %>   <%@ include file = "sucessalert.jsp" %>
+                                        <% }
+}
+catch(Exception e){
+
+}
+                                         %>
+                                            
 						<div class="col-md-8">
 							<!-- TABLE STRIPED -->
 							<div class="panel">
@@ -115,7 +141,8 @@
 											<tr>
 												<th>#</th>
 												<th>department name</th>
-												<th><a href=deptinsertion.jsp class="btn btn-primary">Insert</a></th>
+												<th></th>
+                                                                                                <th><a href=InsertDept.jsp class="btn btn-primary">Insert</a></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -126,7 +153,7 @@
                     <tr>
                         <td><%out.print(i);i++;%></td>
                         <td><%out.print(rs7.getString("dept_name"));%></td>
-                       <td><a href=updatedept.jsp?dept_id=<% out.print(rs7.getString("dept_id")); %> class="btn btn-warning">update</a></td>
+                       <td><a href=UpdateDeptTable.jsp?dept_id=<% out.print(rs7.getString("dept_id")); %> class="btn btn-warning">update</a></td>
                 <td><a href=deletedept.jsp?dept_id=<% out.print(rs7.getString("dept_id")); %> class="btn btn-danger">delete</a></td>
                 
                     </tr>

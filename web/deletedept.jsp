@@ -15,8 +15,8 @@
         String dept_id=request.getParameter("dept_id");
         
         DAL:DBConnect.ExecuteQuery("DELETE FROM `department` WHERE dept_id="+dept_id);
-        
-         response.sendRedirect("PrintDept.jsp");
+        session.setAttribute("msg","sucess");
+         response.sendRedirect("depttable.jsp");
         %>
     </head>
     <body>

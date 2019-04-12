@@ -24,12 +24,12 @@
            rs.next();
            %>
            <tr><td>course name</td>
-                <td><input type="text" name="c_name" value="<%out.print(rs.getString("c_name"));%>"></td></tr>
-               <tr><td>about course</td> <td><input type="text" name="about_course" value="<%out.print(rs.getString("about_course"));%>"></td></tr>
+               <td><input type="text" name="c_name" value="<%out.print(rs.getString("c_name"));%>" required></td></tr>
+               <tr><td>about course</td> <td><input type="text" name="about_course" value="<%out.print(rs.getString("about_course"));%>" required></td></tr>
           <!--      <td>instructor_name</td> <td><%//out.print(rs1.getString("i_name"));%></td> -->
-               <tr>   <td>duration</td><td><input type="text" name="duration" value="<%out.print(rs.getString("duration"));%>"></td></tr>
-             <tr>   <td>department</td>   <td><input type="text" name="dept" value="<%out.print(rs.getString("dept"));%>"></td></tr>
-             <tr>    <td>file</td>   <td><input type="file" name="datafile" value="<%out.print(rs.getString("datafile"));%>"></td></tr>
+               <tr>   <td>duration</td><td><input type="text" name="duration" value="<%out.print(rs.getString("duration"));%>" required></td></tr>
+             <tr>   <td>department</td>   <td><input type="text" name="dept" value="<%out.print(rs.getString("dept"));%>" required></td></tr>
+             <tr>    <td>file</td>   <td><input type="file" name="datafile" value="<%out.print(rs.getString("datafile"));%>" required></td></tr>
              <tr><td></td><input type="hidden" name="c_id" value="<%out.print(rs.getString("c_id"));%>"><td><input type="submit" value="update"></td></tr>
            
          

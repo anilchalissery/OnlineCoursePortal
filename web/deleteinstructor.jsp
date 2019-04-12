@@ -15,7 +15,7 @@
         String i_id=request.getParameter("i_id");
         
         DAL:DBConnect.ExecuteQuery("DELETE FROM `instructor` WHERE i_id="+i_id);
-        
+        session.setAttribute("msg","sucess");
          response.sendRedirect("instructortables.jsp");
         %>
     </head>

@@ -26,6 +26,10 @@
                     <td><input type="text" name="s_name" value="<%out.print(rs.getString("s_name"));%>"></td>
                 </tr>
                 <tr>
+                    <td>Mobile</td>
+                    <td><input type="text" name="s_mob" value="<%out.print(rs.getString("s_mob"));%>"></td>
+                </tr>
+                <tr>
                     <td>Email</td>
                     <td><input type="text" name="s_email" value="<%out.print(rs.getString("s_email"));%>"></td>
                 </tr>
