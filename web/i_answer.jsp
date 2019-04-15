@@ -1,14 +1,20 @@
+<%-- 
+    Document   : i_answer
+    Created on : Apr 14, 2019, 6:55:45 PM
+    Author     : test
+--%>
+
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Insert Department table | Online Course Portal</title>
+	<title>update course data table | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-		String type = (String)session.getAttribute("type");		
-                String uid = (String)session.getAttribute("user");
+				String uid = (String)session.getAttribute("user");
+                                String i_id = (String)session.getAttribute("i_id");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -33,6 +39,7 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+        
 </head>
 
 <body>
@@ -41,7 +48,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="#"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
+				<a href="i_home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -84,7 +91,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="i_profile.jsp"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
@@ -99,16 +106,8 @@
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<%if(type.equals("admin")){ %>
-                <%@ include file = "left_sidebar.jsp" %>
-		<% } 
-                else 
-                {%>
-                <%@ include file = "i_left_sidebar.jsp" %>
-                <% } %>
-                
-                
-                <!-- END LEFT SIDEBAR -->
+		<%@ include file = "i_left_sidebar.jsp" %>
+		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -116,7 +115,7 @@
 				<div class="container-fluid">
 					<h3 class="page-title">Elements</h3>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<!-- BUTTONS -->
 							
 							<!-- END BUTTONS -->
@@ -125,11 +124,24 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Inputs</h3>
 								</div>
+         
 								<div class="panel-body">
-									<form action="deptinsertaction.jsp" method="post">
-                                                                            <input type="text" class="form-control" placeholder="Department name" name="dept" required>
+									<form action="i_answeraction.jsp" method="POST">
+									
+                                                                       
+                                                                        
+                                                                 
+          
+										<select name="q_id" class="form-control"><%ResultSet rs8=DBConnect.SelectData("SELECT * FROM `question`");
+                                                                            while(rs8.next()){%>
+                            <option value="<%out.print(rs8.getString("q_id"));%>"><%out.print(rs8.getString("question"));%></option>
+                <% }  %>        </select>
+<br>									
+               <textarea class="form-control" placeholder="Your Comment" rows="4" name="answer"></textarea>
 									<br>
-                                                                        <input type="submit" value="Register" class="btn btn-primary">
+                                                                       
+                                                                     
+                                                                        <input type="submit" value="Comment" class="btn btn-primary">
                                                                         </form>
 								
 								</div>

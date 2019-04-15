@@ -131,10 +131,10 @@ catch(Exception e){
 								<!-- PROFILE HEADER -->
 								<div class="profile-header">
 									<div class="overlay"></div>
-									<div class="profile-main"><% ResultSet rs1 = DAL.DBConnect.SelectData("SELECT * FROM `instructor` where i_id="+i_id);
-                                                                                                        rs1.next();%>
+									<div class="profile-main"><% ResultSet rs2 = DAL.DBConnect.SelectData("SELECT * FROM `instructor` where i_id="+i_id);
+                                                                                                        rs2.next();%>
 										<img src="assets/img/user1.png" class="img-circle" alt="Avatar">
-										<h3 class="name"><%out.print(rs1.getString("i_name")); %></h3>
+										<h3 class="name"><%out.print(rs2.getString("i_name")); %></h3>
 										<span class="online-status status-available">Available</span>
 									</div>
 									<div class="profile-stat">
@@ -157,11 +157,11 @@ catch(Exception e){
 									<div class="profile-info">
                                                                             
 										<ul class="list-unstyled list-justify">
-                                                                                    <li><b class="heading" >Basic Info</b> <span><div class="text-right"><a href=i_UpdateInstructorData.jsp?i_id=<% out.print(rs1.getString("i_id")); %> class="lnr lnr-pencil"></a></span></li>
-											<li>Gender <span><%out.print(rs1.getString("gender")); %></span></li>
-                                                                                    <li>Mobile <span><%out.print(rs1.getString("i_mob")); %></span></li>
-											<li>Email <span><%out.print(rs1.getString("i_email")); %></span></li>
-                                                                                        <li>Password <span> <div class="text-center"><a href=i_changepasswd.jsp?i_id=<% out.print(rs1.getString("i_id")); %> class="btn btn-primary">Change Password</a></div></span></li>
+                                                                                    <li><b class="heading" >Basic Info</b> <span><div class="text-right"><a href=i_UpdateInstructorData.jsp?i_id=<% out.print(rs2.getString("i_id")); %> class="lnr lnr-pencil"></a></span></li>
+											<li>Gender <span><%out.print(rs2.getString("gender")); %></span></li>
+                                                                                    <li>Mobile <span><%out.print(rs2.getString("i_mob")); %></span></li>
+											<li>Email <span><%out.print(rs2.getString("i_email")); %></span></li>
+                                                                                        <li>Password <span> <div class="text-center"><a href=i_changepasswd.jsp?i_id=<% out.print(rs2.getString("i_id")); %> class="btn btn-primary">Change Password</a></div></span></li>
 											
 										</ul>
 									</div>
@@ -186,9 +186,9 @@ catch(Exception e){
 							</div>
 							<!-- END LEFT COLUMN -->
 							<!-- RIGHT COLUMN -->
-						<!--	<div class="profile-right">
-								<h4 class="heading">Opted Courses</h4>-->
-                                                                <%// include file = "optedcourses.jsp" %> 
+							<div class="profile-right">
+								<h4 class="heading">My Courses</h4>
+                                                                <%@ include file = "mycourses.jsp" %> 
                                                                 
 								<!-- AWARDS -->
 							<!--	<div class="awards">

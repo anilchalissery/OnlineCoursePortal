@@ -137,7 +137,7 @@
 									<br>
                                                                    <input type="text" class="form-control" placeholder="Mobile" pattern="[6-9]{1}[0-9]{9}" title="Enter valid Number " name="s_mob" value="<%out.print(rs.getString("s_mob"));%>">
 									<br>
-                                                                        <input type="text" class="form-control" placeholder="Email" name="s_email" value="<%out.print(rs.getString("s_email"));%>">
+                                                                        <input type="text" class="form-control" placeholder="Email" name="s_email" value="<%out.print(rs.getString("s_email"));%>" readonly>
 									<br>
                                                                         
 									<!--<input type="password" class="form-control" placeholder="password"  name="s_password" value="<%//out.print(rs.getString("s_password"));%>">-->

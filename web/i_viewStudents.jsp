@@ -1,14 +1,22 @@
+<%-- 
+    Document   : i_viewStudents
+    Created on : Apr 14, 2019, 12:48:13 PM
+    Author     : test
+--%>
+
+
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Insert Department table | Online Course Portal</title>
+	<title>All Course  | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-		String type = (String)session.getAttribute("type");		
-                String uid = (String)session.getAttribute("user");
+				String uid = (String)session.getAttribute("user");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -41,7 +49,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="#"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
+				<a href="i_home.jsp"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -53,9 +61,9 @@
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				<!--<div class="navbar-btn navbar-btn-right">
+			<!--	<div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div>-->
+				</div> -->
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -84,7 +92,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="i_profile.jsp"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
@@ -98,62 +106,68 @@
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-		<!-- LEFT SIDEBAR -->
-		<%if(type.equals("admin")){ %>
-                <%@ include file = "left_sidebar.jsp" %>
-		<% } 
-                else 
-                {%>
-                <%@ include file = "i_left_sidebar.jsp" %>
-                <% } %>
-                
-                
-                <!-- END LEFT SIDEBAR -->
+		<%@ include file = "i_left_sidebar.jsp" %>
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Elements</h3>
+				<!--	<h3 class="page-title">Tables</h3> -->
+					
 					<div class="row">
-						<div class="col-md-6">
-							<!-- BUTTONS -->
-							
-							<!-- END BUTTONS -->
-							<!-- INPUTS -->
-							<div class="panel">
+                                            
+                                            
+						<div class="col-md-12">
+							<!-- TABLE STRIPED -->
+                                                        
+                                                        
+
+
+<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Inputs</h3>
+									<h3 class="panel-title">Courses</h3>
 								</div>
 								<div class="panel-body">
-									<form action="deptinsertaction.jsp" method="post">
-                                                                            <input type="text" class="form-control" placeholder="Department name" name="dept" required>
-									<br>
-                                                                        <input type="submit" value="Register" class="btn btn-primary">
-                                                                        </form>
-								
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>sl no.</th>
+												<th>course name</th>
+                                                                                                <th>Students</th>
+											</tr>
+										</thead>
+										<tbody><%String i_id = (String)session.getAttribute("i_id");%>
+										<%ResultSet rs = DAL.DBConnect.SelectData("SELECT * FROM `course` where i_id="+i_id);
+                                                                                 //   ResultSet rs1=DAL.DBConnect.SelectData("SELECT * FROM course INNER JOIN instructor on course.i_id=instructor.i_id");
+                                                                                         int i=1;
+                                                                                            while(rs.next()){
+                                                                                                ResultSet rs1=DAL.DBConnect.SelectData("select * from course_opted INNER join student on course_opted.s_id=student.s_id where c_id="+rs.getString("c_id"));
+                                                                                                while(rs1.next()){
+                                                                                    %>
+                                                                                    <tr>
+                                                                                        <td><%out.print(i);i++;%></td>
+                                                                                        <td><%out.print(rs.getString("c_name"));%></td>
+                                                                                        <td><%out.print(rs1.getString("s_name"));%></td>
+                                                                                
+                                                                                    </tr>
+                                                                                    <% } 
+                                                                                    } %>
+										</tbody>
+									</table>
 								</div>
 							</div>
-							<!-- END INPUTS -->
-							<!-- INPUT SIZING -->
-							
-							<!-- END INPUT SIZING -->
+                                                        
+                                                        
+                                                        
+							<!-- END TABLE STRIPED -->
 						</div>
-						<div class="col-md-6">
-							<!-- LABELS -->
-							
-							<!-- END LABELS -->
-							<!-- PROGRESS BARS -->
-							
-							<!-- END PROGRESS BARS -->
-							<!-- INPUT GROUPS -->
+						                                                          
+                                                                                                            
+                                                                                                            
+                                                                                                            
+                                                                                                            
+                                    
 						
-							<!-- END INPUT GROUPS -->
-							<!-- ALERT MESSAGES -->
-							
-							<!-- END ALERT MESSAGES -->
-						</div>
-					</div>
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

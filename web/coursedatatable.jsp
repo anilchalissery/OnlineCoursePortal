@@ -133,7 +133,7 @@ catch(Exception e){
 							<!-- TABLE STRIPED -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Striped Row</h3>
+									<h3 class="panel-title">Courses</h3>
 								</div>
 								<div class="panel-body">
 									<table class="table table-striped">

@@ -1,14 +1,19 @@
+<%-- 
+    Document   : i_UpdateCourseDataTable
+    Created on : Apr 13, 2019, 9:32:16 PM
+    Author     : test
+--%>
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Insert Department table | Online Course Portal</title>
+	<title>update course data table | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-		String type = (String)session.getAttribute("type");		
-                String uid = (String)session.getAttribute("user");
+				String uid = (String)session.getAttribute("user");
+                                String i_id = (String)session.getAttribute("i_id");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -33,6 +38,7 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+        
 </head>
 
 <body>
@@ -41,7 +47,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="#"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
+				<a href="i_home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -84,7 +90,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="i_profile.jsp"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
@@ -99,16 +105,8 @@
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<%if(type.equals("admin")){ %>
-                <%@ include file = "left_sidebar.jsp" %>
-		<% } 
-                else 
-                {%>
-                <%@ include file = "i_left_sidebar.jsp" %>
-                <% } %>
-                
-                
-                <!-- END LEFT SIDEBAR -->
+		<%@ include file = "i_left_sidebar.jsp" %>
+		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -125,10 +123,35 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Inputs</h3>
 								</div>
+           <%
+               String c_id=request.getParameter("c_id");
+               ResultSet rs=DAL.DBConnect.SelectData("SELECT * FROM `course` where c_id="+c_id+" and i_id="+i_id);
+         //  ResultSet rs1=DAL.DBConnect.SelectData("SELECT * FROM course INNER JOIN instructor on course.i_id=instructor.i_id");
+           rs.next();
+           %>
 								<div class="panel-body">
-									<form action="deptinsertaction.jsp" method="post">
-                                                                            <input type="text" class="form-control" placeholder="Department name" name="dept" required>
+									<form action="updatecoursedataaction.jsp" method="POST">
+									<input type="text" class="form-control" placeholder="course name" name="c_name" value="<%out.print(rs.getString("c_name"));%>">
 									<br>
+                                                                        <textarea class="form-control" placeholder="about course" rows="4" name="about_course"><%out.print(rs.getString("about_course"));%></textarea>
+                                                                        <br>
+                                                                        <input type="text" class="form-control" placeholder="duration" name="duration" value="<%out.print(rs.getString("duration"));%>">
+									<br>
+                                                                        
+                                                                 
+           <!--     <div class="input-group"> -->
+										<select name="dept" class="form-control"><%ResultSet rs8=DBConnect.SelectData("SELECT * FROM `department`");
+                                                                            while(rs8.next()){%>
+                            <option value="<%out.print(rs8.getString("dept_name"));%>"><%out.print(rs8.getString("dept_name"));%></option>
+                <% }  %>        </select>
+									<!--	<span class="input-group-btn"><a href="insertDept.jsp" class="btn btn-primary" type="button" >Other</a></span>-->
+									<!--</div>-->
+              
+									<br>
+                                                                        <input type="file" name="datafile" placeholder="datafile (zip/rar/..)" class="form-control" value="<%out.print(rs.getString("datafile"));%>">
+                                                                        <br>
+                                                                        <input type="hidden" name="c_id" value="<%out.print(rs.getString("c_id"));%>">
+                                                                        <input type="hidden" name="i_id" value="<%out.print(i_id);%>">
                                                                         <input type="submit" value="Register" class="btn btn-primary">
                                                                         </form>
 								

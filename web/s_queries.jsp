@@ -1,10 +1,15 @@
+<%-- 
+    Document   : s_queries
+    Created on : Apr 14, 2019, 6:22:01 PM
+    Author     : test
+--%>
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Insert Department table | Online Course Portal</title>
+	<title>Insert Question  | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 		String type = (String)session.getAttribute("type");		
@@ -59,7 +64,7 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+							<a href="s_home.jsp" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								<i class="lnr lnr-alarm"></i>
 								<span class="badge bg-danger">5</span>
 							</a>
@@ -84,7 +89,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="s_profile.jsp"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
@@ -104,7 +109,7 @@
 		<% } 
                 else 
                 {%>
-                <%@ include file = "i_left_sidebar.jsp" %>
+                <%@ include file = "s_left_sidebar.jsp" %>
                 <% } %>
                 
                 
@@ -126,10 +131,10 @@
 									<h3 class="panel-title">Inputs</h3>
 								</div>
 								<div class="panel-body">
-									<form action="deptinsertaction.jsp" method="post">
-                                                                            <input type="text" class="form-control" placeholder="Department name" name="dept" required>
+									<form action="s_queriesaction.jsp" method="post">
+                                                                            <input type="text" class="form-control" placeholder="Your Question" name="question" required>
 									<br>
-                                                                        <input type="submit" value="Register" class="btn btn-primary">
+                                                                        <input type="submit" class="btn btn-primary">
                                                                         </form>
 								
 								</div>

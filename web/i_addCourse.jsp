@@ -1,14 +1,18 @@
+<%-- 
+    Document   : i_addCourse
+    Created on : Apr 13, 2019, 8:55:46 PM
+    Author     : test
+--%>
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Insert Department table | Online Course Portal</title>
+	<title>Insert Course  | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-		String type = (String)session.getAttribute("type");		
-                String uid = (String)session.getAttribute("user");
+				String uid = (String)session.getAttribute("user");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -41,7 +45,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="#"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
+				<a href="home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -99,16 +103,8 @@
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<%if(type.equals("admin")){ %>
-                <%@ include file = "left_sidebar.jsp" %>
-		<% } 
-                else 
-                {%>
-                <%@ include file = "i_left_sidebar.jsp" %>
-                <% } %>
-                
-                
-                <!-- END LEFT SIDEBAR -->
+		<%@ include file = "i_left_sidebar.jsp" %>
+		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -126,9 +122,24 @@
 									<h3 class="panel-title">Inputs</h3>
 								</div>
 								<div class="panel-body">
-									<form action="deptinsertaction.jsp" method="post">
-                                                                            <input type="text" class="form-control" placeholder="Department name" name="dept" required>
+									<form action="i_addCourseAction.jsp" method="post">
+									<input type="text" class="form-control" placeholder="course name" name="c_name" required>
 									<br>
+                                                                        <textarea class="form-control" placeholder="about course" rows="4" name="aboutcourse" required></textarea>
+                                                                        <br>
+                                                                        <input type="text" class="form-control" placeholder="duration" name="duration" required>
+									<br>
+                                                                 
+                <div class="input-group">
+										<select name="dept" class="form-control"><%ResultSet rs8=DBConnect.SelectData("SELECT * FROM `department`");
+                                                                            while(rs8.next()){%>
+                            <option value="<%out.print(rs8.getString("dept_name"));%>"><%out.print(rs8.getString("dept_name"));%></option>
+                <% }  %>        </select>
+										<span class="input-group-btn"><a href="InsertDept.jsp" class="btn btn-primary" type="button" >Other</a></span>
+									</div>
+                <br>
+                                                                        <input type="file" name="datafile" placeholder="datafile (zip/rar/..)" class="form-control">
+                                                                        <br>
                                                                         <input type="submit" value="Register" class="btn btn-primary">
                                                                         </form>
 								

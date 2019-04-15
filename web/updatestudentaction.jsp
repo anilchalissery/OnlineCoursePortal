@@ -34,7 +34,7 @@
                                              session.setAttribute("msg","sucess");
                                         response.sendRedirect("s_profile.jsp");
                                          }
-                                         else if(type.equals("insturctor"))
+                                         else if(type.equals("instructor"))
                                          {
                                              //out.print(type+"3");
                                              response.sendRedirect("i_profile.jsp");

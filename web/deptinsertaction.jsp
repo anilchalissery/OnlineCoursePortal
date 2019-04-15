@@ -28,9 +28,28 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
         <%
         String dept=request.getParameter("dept");
-        
+        String type = (String)session.getAttribute("type");
 DAL.DBConnect.ExecuteQuery("INSERT INTO `department`( `dept_name`) VALUES ('"+dept+"')");
-response.sendRedirect("depttable.jsp");
+//response.sendRedirect("depttable.jsp");
+try
+                                             {
+                                             
+                                         if(type.equals("instructor"))
+                                         {
+                                             //out.print(type+"3");
+                                             response.sendRedirect("i_addCourse.jsp");
+                                         }
+                                         else
+                                         {
+                                             session.setAttribute("msg","sucess");
+                                             response.sendRedirect("depttable.jsp");
+                                         }
+}
+catch(Exception e){
+    out.print(type+"4");
+out.print(e);
+}
+                                  
         %>
     </head>
     <body>

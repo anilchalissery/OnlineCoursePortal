@@ -17,10 +17,9 @@
         String i_name=request.getParameter("i_name");
         String gender=request.getParameter("gender");
         String i_mob=request.getParameter("i_mob");
-        String i_password=request.getParameter("i_password");
-        String i_email=request.getParameter("i_email");
         
-        DAL:DBConnect.ExecuteQuery("UPDATE `instructor` SET `i_name`='"+i_name+"',`gender`='"+gender+"',`i_mob`='"+i_mob+"',`i_email`='"+i_email+"',`i_password`='"+i_password+"' WHERE i_id="+i_id);
+        
+        
        // String msg="";
         session.setAttribute("msg","sucess");
       
@@ -32,11 +31,15 @@
                                         if(type.equals("instructor"))
                                          {
                                              //out.print(type+"3");
+                                             DAL:DBConnect.ExecuteQuery("UPDATE `instructor` SET `i_name`='"+i_name+"',`gender`='"+gender+"',`i_mob`='"+i_mob+"' WHERE i_id="+i_id);
                                              response.sendRedirect("i_profile.jsp");
                                          }
                                         
                                          else
                                          {
+                                             String i_password=request.getParameter("i_password");
+                                               String i_email=request.getParameter("i_email");
+                                               DAL:DBConnect.ExecuteQuery("UPDATE `instructor` SET `i_name`='"+i_name+"',`gender`='"+gender+"',`i_mob`='"+i_mob+"',`i_email`='"+i_email+"',`i_password`='"+i_password+"' WHERE i_id="+i_id);
                                           //   session.setAttribute("msg","sucess");
                                              response.sendRedirect("instructortables.jsp");
                                          }

@@ -120,7 +120,7 @@
 									<form action="course_regaction.jsp" method="post">
 									<input type="text" class="form-control" placeholder="course name" name="c_name" required>
 									<br>
-                                                                        <textarea class="form-control" placeholder="about course" rows="4" required></textarea>
+                                                                        <textarea class="form-control" placeholder="about course" rows="4" name="aboutcourse" required></textarea>
                                                                         <br>
                                                                         <input type="text" class="form-control" placeholder="duration" name="duration" required>
 									<br>

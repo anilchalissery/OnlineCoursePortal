@@ -1,6 +1,6 @@
 <%-- 
-    Document   : deletecoursedata
-    Created on : Mar 13, 2019, 2:53:13 PM
+    Document   : s_queriesaction
+    Created on : Apr 14, 2019, 6:26:22 PM
     Author     : test
 --%>
 
@@ -9,35 +9,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>deleting course</title>
+        <title>JSP Page</title>
          <%
-            String c_id=request.getParameter("c_id");
-            String type = (String)session.getAttribute("type");
-        DAL.DBConnect.ExecuteQuery("DELETE FROM `course` WHERE c_id='"+c_id+"'");
-      
-session.setAttribute("msg","sucess");
-//response.sendRedirect("coursedatatable.jsp");
+        String question=request.getParameter("question");
+        String type = (String)session.getAttribute("type");
+        String s_id = (String)session.getAttribute("s_id");
+DAL.DBConnect.ExecuteQuery("INSERT INTO `question`( `s_id`, `question`) VALUES ('"+s_id+"','"+question+"')");
+//response.sendRedirect("depttable.jsp");
 try
                                              {
                                              
-                                         if(type.equals("instructor"))
+                                         if(type.equals("student"))
                                          {
                                              //out.print(type+"3");
-                                             response.sendRedirect("i_viewcourses.jsp");
+                                             response.sendRedirect("s_profile.jsp");
                                          }
                                          else
                                          {
                                              session.setAttribute("msg","sucess");
-                                             response.sendRedirect("depttable.jsp");
+                                             response.sendRedirect("home.jsp");
                                          }
 }
 catch(Exception e){
     out.print(type+"4");
 out.print(e);
 }
-%>
+                                  
+        %>
     </head>
     <body>
-        <h1>delete course</h1>
+        <h1>s_queryaction</h1>
     </body>
 </html>
