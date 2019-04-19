@@ -18,7 +18,7 @@
        
       //  String i_id="2";
         DAL.DBConnect.ExecuteQuery("INSERT INTO `answers`( `i_id`, `q_id`, `answer`) VALUES ('"+i_id+"','"+q_id+"','"+answer+"')");
-      response.sendRedirect("i_profile.jsp");
+      response.sendRedirect("i_viewintracts.jsp");
 %>
         
     </head>

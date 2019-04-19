@@ -1,13 +1,9 @@
 <%-- 
-    Document   : s_opted_courses
-    Created on : Apr 8, 2019, 8:58:46 PM
+    Document   : i_approveStudents
+    Created on : Apr 18, 2019, 2:49:32 PM
     Author     : test
 --%>
-<%-- 
-    Document   : tables
-    Created on : Mar 18, 2019, 4:17:41 PM
-    Author     : test
---%>
+
 
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
@@ -17,11 +13,10 @@
 <html lang="en">
 
 <head>
-	<title>Course Opted Students | Online Course Portal</title>
+	<title>All Course  | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
-                                String s_id = (String)session.getAttribute("s_id");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -54,7 +49,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="s_home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="i_home.jsp"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -66,9 +61,9 @@
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				<!--<div class="navbar-btn navbar-btn-right">
+			<!--	<div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div>-->
+				</div> -->
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -97,7 +92,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="i_profile.jsp"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
@@ -111,94 +106,71 @@
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-		<%@ include file = "s_left_sidebar.jsp" %>
+		<%@ include file = "i_left_sidebar.jsp" %>
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Course that you have Opted for</h3>
+				<!--	<h3 class="page-title">Tables</h3> -->
+					
 					<div class="row">
-						
-						
-					<div class="row">
-						                                                            	</div>
+                                            
+                                            
 						<div class="col-md-12">
-							<!-- TABLE HOVER -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title"></h3>
-								</div>
-                                                            
-                                                            <% 
-                                             try
-                                             {
-                                             String msg1 = (String)session.getAttribute("msg1");
-                                         if(msg1.equals("sucess"))
-                                         {
-                                        %>   <%@ include file = "appliedsucessalert.jsp" %>
-                                        <% }
-}
-catch(Exception e){
+							<!-- TABLE STRIPED -->
+                                                        
+                                                        
 
-}
-                                         %>
-                                                            
+
+<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Courses</h3>
+								</div>
 								<div class="panel-body">
-									<table class="table table-hover">
+									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th>Course name</th>
-                                                                                                <th>About course</th>
-                                                                                               <!--  <th>instructor_name</th>-->
-                                                                                                  <th>Duration</th>
-                                                                                                   <th>Department</th>
-                                                                                                 <th>Review</th>
-                                                                                                 <th>Status</th>
-                                                                                             <!--    <th><a href="course_opting.jsp" class="btn btn-primary">Insert</a></th> -->
+												<th>sl no.</th>
+												<th>course name</th>
+                                                                                                <th>Students</th>
+                                                                                                <th>Status</th>
 											</tr>
 										</thead>
-										<tbody>
-											 <%
-               ResultSet rs5=DAL.DBConnect.SelectData("SELECT * FROM `course_opted` INNER JOIN student on course_opted.s_id=student.s_id where student.s_id="+s_id);
-           
-          
-           //
-           while(rs5.next()) {
-          ResultSet rs6=DAL.DBConnect.SelectData("SELECT * FROM `course_opted` INNER JOIN course on course_opted.c_id=course.c_id where course.c_id="+rs5.getString("c_id")+" and course_opted.s_id="+rs5.getString("s_id"));
-                while(rs6.next()) {
-           %>
-           <tr>
-               <td><%out.print(rs6.getString("c_name"));%></td>
-               <td><%out.print(rs6.getString("about_course"));%></td>
-            <!--   <td><%//out.print(rs1.getString("i_name"));%></td> -->
-                <td><%out.print(rs6.getString("duration"));%></td>
-                <td><%out.print(rs6.getString("dept"));%></td>
-                  <td><%out.print(rs6.getString("review"));%></td>
-                  <td><%out.print(rs6.getString("status"));%></td>
-                  
-                   
-                  
-               <!--     <td><a href=deletecourseoptingdata.jsp?co_id=<%//out.print(rs5.getString("co_id"));%> class="btn btn-danger">delete</a></td> -->
-           </tr>
-           <% } 
-                    } %>
+										<tbody><%String i_id = (String)session.getAttribute("i_id");%>
+										<%ResultSet rs = DAL.DBConnect.SelectData("SELECT * FROM `course` where i_id="+i_id);
+                                                                                 //   ResultSet rs1=DAL.DBConnect.SelectData("SELECT * FROM course INNER JOIN instructor on course.i_id=instructor.i_id");
+                                                                                         int i=1;
+                                                                                            while(rs.next()){
+                                                                                                ResultSet rs1=DAL.DBConnect.SelectData("select * from course_opted INNER join student on course_opted.s_id=student.s_id where c_id="+rs.getString("c_id"));
+                                                                                                while(rs1.next()){
+                                                                                    %>
+                                                                                    <tr>
+                                                                                        <td><%out.print(i);i++;%></td>
+                                                                                        <td><%out.print(rs.getString("c_name"));%></td>
+                                                                                        <td><%out.print(rs1.getString("s_name"));%></td>
+                                                                                        <td><%out.print(rs1.getString("status"));%></td>
+                                                                                        <td><a href=i_approveAction.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%> class="btn btn-warning">Approve</a>   <a href=i_rejectAction.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%> class="btn btn-warning">Reject</a></td>
+                                                                                           
+                                                                                    </tr>
+                                                                                    <% } 
+                                                                                    } %>
 										</tbody>
 									</table>
 								</div>
 							</div>
-							<!-- END TABLE HOVER -->
+                                                        
+                                                        
+                                                        
+							<!-- END TABLE STRIPED -->
 						</div>
-					</div>
+						                                                          
                                                                                                             
                                                                                                             
                                                                                                             
                                                                                                             
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                     
-					</div>
+                                    
+						
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->

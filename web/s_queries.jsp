@@ -119,20 +119,20 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Elements</h3>
+					<h3 class="page-title"></h3>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<!-- BUTTONS -->
 							
 							<!-- END BUTTONS -->
 							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Inputs</h3>
+									<h3 class="panel-title">your question</h3>
 								</div>
 								<div class="panel-body">
 									<form action="s_queriesaction.jsp" method="post">
-                                                                            <input type="text" class="form-control" placeholder="Your Question" name="question" required>
+                                                                            <textarea class="form-control" placeholder="Your Question" name="question" required></textarea>
 									<br>
                                                                         <input type="submit" class="btn btn-primary">
                                                                         </form>

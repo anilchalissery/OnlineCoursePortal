@@ -95,9 +95,9 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="StudentRegs.jsp" class=""><i class="lnr lnr-user"></i> <span>Student Registration</span></a></li>
+						<li><a href="StudentRegs.jsp" class="active"><i class="lnr lnr-user"></i> <span>Student Registration</span></a></li>
 					
-						<li><a href="InstructorReg.jsp" class=""><i class="lnr lnr-user"></i> <span>Instructor Registration</span></a></li>
+						<li><a href="instructorRegs.jsp" class=""><i class="lnr lnr-user"></i> <span>Instructor Registration</span></a></li>
 				                <!--<li><a href="studenttables.jsp" class=""><i class="lnr lnr-dice"></i>Student Table</a></li>
 									<li><a href="instructortables.jsp" class=""><i class="lnr lnr-dice"></i>Instructor Table</a></li>
 									<li><a href="courseoptedtable.jsp" class=""><i class="lnr lnr-dice"></i>Course opted Table</a></li>

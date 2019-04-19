@@ -17,6 +17,7 @@
         String s_name=request.getParameter("s_name");
         String gender=request.getParameter("gender");
          String s_mob=request.getParameter("s_mob");
+         //String status=request.getParameter("status");
       //  String s_password=request.getParameter("s_password");
         String s_email=request.getParameter("s_email");
         

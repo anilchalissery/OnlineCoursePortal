@@ -18,6 +18,7 @@
         String s_password=request.getParameter("s_password");
         //String s_password_check=request.getParameter("s_password_check");
         String s_mob=request.getParameter("s_mob");
+       // String status="Pending";
         // String s_mob=request.getParameter("s_mob");
        // out.print("name"+s_name+"email"+s_email+"password"+s_password);
         DAL.DBConnect.ExecuteQuery("insert into student (s_name,gender,s_mob,s_email,s_password) values ('"+s_name+"','"+gender+"','"+s_mob+"','"+s_email+"','"+s_password+"')");

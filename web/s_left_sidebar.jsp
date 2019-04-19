@@ -11,7 +11,7 @@
 				                <li><a href="s_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
 						<li><a href="s_Opt_course.jsp" class=""><i class="fa fa-search"></i>Opt Course</a></li>
                                                 <li><a href="s_opted_courses.jsp" class=""><i class="fa fa-line-chart"></i>Opted Course</a></li>
-                                                <li><a href="s_queries.jsp" class=""><i class="lnr lnr-bubble"></i>Queries</a></li>
+                                                <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Queries</a></li>
 								<!--	<li><a href="courseoptedtable.jsp" class=""><i class="lnr lnr-dice"></i>Course opted Table</a></li>
                                                                         <li><a href="coursedatatable.jsp" class=""><i class="lnr lnr-dice"></i>Course Table</a></li>
                                                                         <li><a href="depttable.jsp" class=""><i class="lnr lnr-dice"></i>Departments table</a></li>

@@ -22,7 +22,7 @@ try
                                          if(type.equals("student"))
                                          {
                                              //out.print(type+"3");
-                                             response.sendRedirect("s_profile.jsp");
+                                             response.sendRedirect("i_viewintracts.jsp");
                                          }
                                          else
                                          {

@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-	<title>Insert instructor table | Online Course Portal</title>
+	<title>Insert instructor | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
+                                String type = (String)session.getAttribute("type");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -96,7 +97,27 @@
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<%@ include file = "left_sidebar.jsp" %>
+		<%  if(type.equals("admin")){%>
+                <%@ include file = "left_sidebar.jsp" %>
+                <% }
+else{
+%>
+<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="StudentRegs.jsp" class=""><i class="lnr lnr-user"></i> <span>Student Registration</span></a></li>
+					
+						<li><a href="instructorReg.jsp" class="active"><i class="lnr lnr-user"></i> <span>Instructor Registration</span></a></li>
+				                
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+
+<% } %>
+                
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">

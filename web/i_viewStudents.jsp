@@ -134,6 +134,7 @@
 												<th>sl no.</th>
 												<th>course name</th>
                                                                                                 <th>Students</th>
+                                                                                                
 											</tr>
 										</thead>
 										<tbody><%String i_id = (String)session.getAttribute("i_id");%>
@@ -148,6 +149,7 @@
                                                                                         <td><%out.print(i);i++;%></td>
                                                                                         <td><%out.print(rs.getString("c_name"));%></td>
                                                                                         <td><%out.print(rs1.getString("s_name"));%></td>
+                                                                                        
                                                                                 
                                                                                     </tr>
                                                                                     <% } 

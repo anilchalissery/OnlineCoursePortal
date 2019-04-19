@@ -1,21 +1,14 @@
-<%@page import="java.sql.ResultSet"%>
+<%-- 
+    Document   : instructorRegs
+    Created on : Apr 16, 2019, 9:10:34 AM
+    Author     : test
+--%>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Update student data table | Online Course Portal</title>
-        <%
-		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-				String uid = (String)session.getAttribute("user");
-                              //  String s_id = (String)session.getAttribute("s_id");
-				if (uid == null)
-				{
-		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
-					 <jsp:forward page="Login.jsp"/>
-		<%	
-				}
-				
-		%> 
+	<title>Insert instructor | Online Course Portal</title>
+        
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -40,22 +33,22 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"><img src="assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="Login.jsp"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
 				</div>
-				<form class="navbar-form navbar-left">
+				<!--<form class="navbar-form navbar-left">
 					<div class="input-group">
 						<input type="text" value="" class="form-control" placeholder="Search dashboard...">
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
-				</form>
+				</form>-->
 				<!--<div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
 				</div>-->
-				<div id="navbar-menu">
+			<!--	<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
@@ -81,7 +74,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
@@ -92,66 +85,81 @@
 						<!-- <li>
 							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
 						</li> -->
-					</ul>
-				</div>
+					<!--</ul>
+				</div>-->
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<%@ include file = "left_sidebar.jsp" %>
+		
+<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="StudentRegs.jsp" class=""><i class="lnr lnr-user"></i> <span>Student Registration</span></a></li>
+					
+						<li><a href="instructorRegs.jsp" class="active"><i class="lnr lnr-user"></i> <span>Instructor Registration</span></a></li>
+				                
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+
+
+                
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Update Student Data</h3>
+					<h3 class="page-title">Instructor Registration</h3>
 					<div class="row">
 						<div class="col-md-6">
 							<!-- BUTTONS -->
-							
+							<% 
+                                             try
+                                             {
+                                             String msg = (String)session.getAttribute("msg");
+                                         if(msg.equals("email"))
+                                         {
+                                             %>   <h3> Email already exists</h3>
+                                        <% }
+}
+catch(Exception e){
+
+}
+                                         %>
 							<!-- END BUTTONS -->
 							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title"></h3>
+									<h3 class="panel-title">Inputs</h3>
 								</div>
 								<div class="panel-body">
-                                                                   <form action="updatestudentaction.jsp" method="GET"><%
-       String s_id=request.getParameter("s_id");
-        ResultSet rs=DAL.DBConnect.SelectData("select * from student where s_id="+s_id);
-        rs.next();
-        %>
-                                                                        
-									<input type="text" class="form-control" placeholder="Name" name="s_name" value="<%out.print(rs.getString("s_name"));%>">
-									
-                                                                       <!-- <input type="radio" class="form-control" placeholder="gender" name="gender" value="Male" <%//if(rs.getString("gender").equals("Male")){%>checked<%//} %>>
+									<form action="instructorregaction.jsp" method="post">
+									<input type="text" class="form-control" placeholder="Name" name="i_name" pattern="[A-Z a-z]{1,32}" required>
 									<br>
-                                                                        <input type="radio" class="form-control" placeholder="gender" name="gender" value="Female" <%//if(rs.getString("gender").equals("Female")){ %>checked<%//} %>> -->
-                                                                        <br>
-									<label class="fancy-radio">
-										<input name="gender" value="Male" type="radio" <%if(rs.getString("gender").equals("Male")){ %>checked<% } %> >
+                                                                        <label class="fancy-radio">
+										<input name="gender" value="Male" type="radio" checked >
 										<span><i></i>Male</span>
 									</label>
 									<label class="fancy-radio">
-										<input name="gender" value="Female" type="radio" <%if(rs.getString("gender").equals("Female")){ %>checked<% } %> >
+										<input name="gender" value="Female" type="radio"  >
 										<span><i></i>Female</span>
 									</label>
+                                                                        <br>
+                                                                        <input type="text" class="form-control" placeholder="Mobile number" pattern="[7-9]{1}[0-9]{9}" title="Enter valid Number "name="i_mob" required>
 									<br>
-                                                                   <input type="text" class="form-control" placeholder="Mobile" pattern="[6-9]{1}[0-9]{9}" title="Enter valid Number " name="s_mob" value="<%out.print(rs.getString("s_mob"));%>">
+                                                                        <input type="email" class="form-control" placeholder="Email" name="i_email" required>
 									<br>
-                                                                        <input type="text" class="form-control" placeholder="Email" name="s_email" value="<%out.print(rs.getString("s_email"));%>">
+                                                                        
+									<input type="password" class="form-control" placeholder="password"  name="i_password" required>
+									<br>
+                                                                        <input type="submit" value="Register" class="btn btn-primary">
 									
-                                                                        
-                                                                        
-                                                                        
-									
-                                                                        
-									<!--<input type="password" class="form-control" placeholder="password"  name="s_password" value="<%//out.print(rs.getString("s_password"));%>">-->
-									<br><input type="hidden" name="s_id" value="<%out.print(rs.getString("s_id"));%>">
-                                                                        <input type="submit" value="Update" class="btn btn-primary">
-									
-                                                                    </form>
+								
 								</div>
 							</div>
 							<!-- END INPUTS -->

@@ -13,7 +13,7 @@
 									<li><a href="courseoptedtable.jsp" class=""><i class="lnr lnr-dice"></i>Course opted Table</a></li>
                                                                         <li><a href="coursedatatable.jsp" class=""><i class="lnr lnr-dice"></i>Course Table</a></li>
                                                                         <li><a href="depttable.jsp" class=""><i class="lnr lnr-dice"></i>Departments table</a></li>
-                                                                        <li><a href="intract.jsp" class=""><i class="lnr lnr-dice"></i>Chat table</a></li>
+                                                                        <li><a href="intract1.jsp" class=""><i class="lnr lnr-dice"></i>Chat table</a></li>
 				
 					</ul>
 				</nav>

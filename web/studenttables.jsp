@@ -144,7 +144,7 @@ catch(Exception e){
                                                                                                 <th>Mobile Number</th>
                                                                                                 <th>Email</th>
                                                                                                 <th>Password</th>
-                                                                                                <th></th>
+                                                                                                <th>Status</th>
                                                                                                 <th align="right">  
                                                                                                   <!--  <button type="button" class="btn btn-primary"></button> -->
                                                                                                     <a href=insertstudentreg.jsp class="btn btn-primary">Insert</a>
@@ -159,6 +159,7 @@ catch(Exception e){
                                                                                                 <td><%out.print(rs1.getString("s_mob")); %></td>
                                                                                                 <td><%out.print(rs1.getString("s_email")); %></td>
                                                                                                 <td><%out.print(rs1.getString("s_password")); %></td>
+                                                                                                <td><%out.print(rs1.getString("status")); %></td>
                                                                                                 <td><a href=UpdateStudentData.jsp?s_id=<% out.print(rs1.getString("s_id")); %> class="btn btn-warning">update</a></td>
                                                                                                 <td><a href=deletestudent.jsp?s_id=<% out.print(rs1.getString("s_id")); %> class="btn btn-danger">delete</a></td>
                                                                                         

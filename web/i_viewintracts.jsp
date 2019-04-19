@@ -3,11 +3,6 @@
     Created on : Apr 14, 2019, 8:21:08 PM
     Author     : test
 --%>
-<%-- 
-    Document   : s_queries
-    Created on : Apr 14, 2019, 6:22:01 PM
-    Author     : test
---%>
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
 <!doctype html>
@@ -112,9 +107,13 @@
 		<%if(type.equals("admin")){ %>
                 <%@ include file = "left_sidebar.jsp" %>
 		<% } 
-                else 
+                else if(type.equals("instructor"))
                 {%>
                 <%@ include file = "i_left_sidebar.jsp" %>
+                <% } 
+                else 
+                {%>
+                <%@ include file = "s_left_sidebar.jsp" %>
                 <% } %>
                 
                 
@@ -124,9 +123,15 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Elements</h3>
-					<div class="row"><%ResultSet rs=DAL.DBConnect.SelectData("SELECT * FROM `question` INNER JOIN student on question.s_id=student.s_id");
-                                                               int i=1;     while(rs.next()){ %>
+					<h3 class="page-title"><%if(type.equals("student"))
+                { %>
+                <a href=s_queries.jsp class="btn btn-primary">New Question</a>
+                <% } %></h3>
+					<div class="row"><%
+                                               int i=1; 
+                                            ResultSet rs = DAL.DBConnect.SelectData("SELECT * FROM `question` INNER JOIN student on question.s_id=student.s_id");
+                                                                
+                                       while(rs.next()){ %>
 						<div class="col-md-12">
 							<!-- BUTTONS -->
 							
@@ -149,9 +154,14 @@
                                                                            <textarea class="form-control" name="answer" readonly>                       <%out.print(rs1.getString("i_name"));%> : <%out.print(rs1.getString("answer"));%></textarea>
                                                                         <br>
                                                                        
-                                                                        <% }
-%>
- <a href=i_answer.jsp class="btn btn-primary">Comment</a>
+                                                                        <% } 
+   if(type.equals("instructor"))
+                { %>
+                <input type="hidden" name="q_id" value="<%out.print(rs.getString("q_id"));%>"> <a href=i_answer.jsp?q_id=<%out.print(rs.getString("q_id"));%> class="btn btn-primary">Comment</a>
+                <% } %>
+                
+                                                                        
+                                                                    
                                                                     </form>
 </div>
 			</div>

@@ -19,13 +19,43 @@
         String i_email=request.getParameter("i_email");
         String i_password=request.getParameter("i_password");
         String i_password_check=request.getParameter("i_password_check");
-        
+          String type = (String)session.getAttribute("type");
         
         //out.print("name"+i_name+"email"+i_email+"password"+i_password);
+        ResultSet rs=DBConnect.SelectData("select * from instructor");
+        while(rs.next()){
+            String dbemail=rs.getString("i_email");
+            if(dbemail.equals(i_email)){
+                session.setAttribute("msg","email");
+                response.sendRedirect("instructorRegs.jsp");
+            }
+        }
+        
         DAL.DBConnect.ExecuteQuery("insert into instructor (i_name,gender,i_mob,i_email,i_password) values ('"+i_name+"','"+gender+"','"+i_mob+"','"+i_email+"','"+i_password+"')");
         session.setAttribute("msg","sucess");
          response.sendRedirect("instructortables.jsp");
         
+/*try{
+                                             
+                                         
+                                         
+                                          if(type.equals("admin"))
+                                         {
+                                         // out.print(type+"2");
+                                             session.setAttribute("msg","sucess");
+                                             response.sendRedirect("instructortables.jsp");   
+                                         }
+                                         else
+                                         {
+                                             //session.setAttribute("msg","sucess");
+                                        //     out.print(type+"3");
+                                             response.sendRedirect("Login.jsp");
+                                         }
+}
+catch(Exception e){
+    out.print(type+"4");
+out.print(e);
+}*/
         %>
     </head>
     <body>

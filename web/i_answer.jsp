@@ -132,15 +132,18 @@
                                                                         
                                                                  
           
-										<select name="q_id" class="form-control"><%ResultSet rs8=DBConnect.SelectData("SELECT * FROM `question`");
-                                                                            while(rs8.next()){%>
-                            <option value="<%out.print(rs8.getString("q_id"));%>"><%out.print(rs8.getString("question"));%></option>
-                <% }  %>        </select>
-<br>									
+										<!--<select name="q_id" class="form-control"><%
+                                                                                    String q_id=request.getParameter("q_id");
+                                                                                    ResultSet rs8=DBConnect.SelectData("SELECT * FROM `question` where q_id="+q_id);
+                                                                  rs8.next();     //     while(){%>
+                            <option value="<%//out.print(rs8.getString("q_id"));%>"><%//out.print(rs8.getString("question"));%></option>
+                <%// }  %>        </select>-->
+                <br>				<textarea class="form-control" name="question"  readonly>  <%out.print(rs8.getString("question"));%>  </textarea>       					
+                <br>
                <textarea class="form-control" placeholder="Your Comment" rows="4" name="answer"></textarea>
 									<br>
                                                                        
-                                                                     
+                                                                     <input type="hidden" name="q_id" value="<%out.print(rs8.getString("q_id"));%>">
                                                                         <input type="submit" value="Comment" class="btn btn-primary">
                                                                         </form>
 								

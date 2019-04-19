@@ -12,13 +12,13 @@
 <table class="table table-hover">
 										<thead>
 											<tr>
-												<th>course name</th>
-                                                                                                <th>about course</th>
+												<th>Course name</th>
+                                                                                                <th>About course</th>
                                                                                                <!--  <th>instructor_name</th>-->
-                                                                                                  <th>duration</th>
-                                                                                                   <th>department</th>
-                                                                                                 <th>review</th>
-                                                                                                 <th></th>
+                                                                                                  <th>Duration</th>
+                                                                                                   <th>Department</th>
+                                                                                                 <th>Review</th>
+                                                                                                 <th>Status</th>
                                                                                              <!--    <th><a href="course_opting.jsp" class="btn btn-primary">Insert</a></th> -->
 											</tr>
 										</thead>
@@ -39,7 +39,7 @@
                 <td><%out.print(rs6.getString("duration"));%></td>
                 <td><%out.print(rs6.getString("dept"));%></td>
                   <td><%out.print(rs6.getString("review"));%></td>
-                   
+                   <td><%out.print(rs6.getString("status"));%></td>
                   
                <!--     <td><a href=deletecourseoptingdata.jsp?co_id=<%//out.print(rs5.getString("co_id"));%> class="btn btn-danger">delete</a></td> -->
            </tr>
