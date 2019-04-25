@@ -3,11 +3,6 @@
     Created on : Apr 8, 2019, 8:58:46 PM
     Author     : test
 --%>
-<%-- 
-    Document   : tables
-    Created on : Mar 18, 2019, 4:17:41 PM
-    Author     : test
---%>
 
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>

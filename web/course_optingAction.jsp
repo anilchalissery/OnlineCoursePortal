@@ -22,7 +22,7 @@
         ResultSet rs = DAL.DBConnect.SelectData("SELECT * FROM `course_opted` INNER JOIN course on course_opted.c_id=course.c_id where course.c_id="+c_id+" and course_opted.s_id="+s_id);
         if(!rs.next())
         {
-        DAL.DBConnect.ExecuteQuery("INSERT INTO `course_opted`(`s_id`, `c_id`,status) VALUES ('"+s_id+"','"+c_id+"','"+status+"')");
+        DAL.DBConnect.ExecuteQuery("INSERT INTO `course_opted`(`s_id`, `c_id`, `status`) VALUES ('"+s_id+"','"+c_id+"','"+status+"')");
         response.sendRedirect("s_opted_courses.jsp");
         session.setAttribute("msg1", "sucess" );  
         }

@@ -13,7 +13,7 @@
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
-                                String i_id = (String)session.getAttribute("i_id");
+                              //  String i_id = (String)session.getAttribute("i_id");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->

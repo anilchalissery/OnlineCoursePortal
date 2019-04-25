@@ -121,13 +121,14 @@
 							<!-- BUTTONS -->
 							
 							<!-- END BUTTONS -->
+                                                        
 							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">Inputs</h3>
 								</div>
 								<div class="panel-body">
-                                                                    <form action="studentregaction.jsp" method="post">
+                                                                    <form action="studentregaction_1.jsp" method="post">
                                                                         <input type="text" class="form-control" placeholder="Name" name="s_name" required>
 									<br>
                                                                         
@@ -148,7 +149,14 @@
 									<input type="password" class="form-control" placeholder="password"  name="s_password" required>
 									<br>
                                                                         <input type="submit" value="Register" class="btn btn-primary">
-									
+									<br>
+                                                                        <%
+                                                            if(request.getParameter("a")!=null)
+                                                            {
+                                                                %> <jsp:include page="emailAlert.jsp"></jsp:include> <%
+                                                            }
+                                                        
+                                                        %>
 								
 								</div>
 							</div>

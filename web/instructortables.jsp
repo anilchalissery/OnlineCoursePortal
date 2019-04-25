@@ -144,6 +144,7 @@ catch(Exception e){
                                                                                                 <th>Mobile No</th>
                                                                                                 <th>Email</th>
                                                                                                 <th>Password</th>
+                                                                                                <th>Status</th>
                                                                                                 
                                                                                                 <th></th>
                                                                                                            
@@ -159,6 +160,7 @@ catch(Exception e){
                                                                                                              <td><%out.print(rs2.getString("i_mob")); %></td>
                                                                                                             <td><%out.print(rs2.getString("i_email")); %></td>
                                                                                                             <td><%out.print(rs2.getString("i_password")); %></td>
+                                                                                                           <td><%out.print(rs2.getString("status")); %></td>
                                                                                                             <td><a href=UpdateInstructorData.jsp?i_id=<% out.print(rs2.getString("i_id")); %> class="btn btn-warning">update</a></td>
                                                                                                             <td><a href=deleteinstructor.jsp?i_id=<% out.print(rs2.getString("i_id")); %> class="btn btn-danger">delete</a></td>
 

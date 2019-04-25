@@ -127,10 +127,10 @@
 									<table class="table table-hover">
 										<thead>
 											<tr>
-												<th>course name</th>
-                                                                                                <th>student name</th>
-                                                                                                 <th>review</th>
-                                                                                                 <th></th>
+												<th>Course name</th>
+                                                                                                <th>Student name</th>
+                                                                                                 <th>Review</th>
+                                                                                                 <th>Status</th>
                                                                                              <!--    <th><a href="course_opting.jsp" class="btn btn-primary">Insert</a></th> -->
 											</tr>
 										</thead>
@@ -147,7 +147,7 @@
                <td><%out.print(rs6.getString("c_name"));%></td>
                <td><%out.print(rs5.getString("s_name"));%></td>
                   <td><%out.print(rs6.getString("review"));%></td>
-                   
+                   <td><%out.print(rs6.getString("status"));%></td>
                   
                     <td><a href=deletecourseoptingdata.jsp?co_id=<%out.print(rs5.getString("co_id"));%> class="btn btn-danger">delete</a></td> 
            </tr>

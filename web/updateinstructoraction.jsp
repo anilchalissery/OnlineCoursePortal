@@ -17,7 +17,7 @@
         String i_name=request.getParameter("i_name");
         String gender=request.getParameter("gender");
         String i_mob=request.getParameter("i_mob");
-        
+        String status=request.getParameter("status");
         
         
        // String msg="";
@@ -39,7 +39,7 @@
                                          {
                                              String i_password=request.getParameter("i_password");
                                                String i_email=request.getParameter("i_email");
-                                               DAL:DBConnect.ExecuteQuery("UPDATE `instructor` SET `i_name`='"+i_name+"',`gender`='"+gender+"',`i_mob`='"+i_mob+"',`i_email`='"+i_email+"',`i_password`='"+i_password+"' WHERE i_id="+i_id);
+                                               DAL:DBConnect.ExecuteQuery("UPDATE `instructor` SET `i_name`='"+i_name+"',`gender`='"+gender+"',`i_mob`='"+i_mob+"',`i_email`='"+i_email+"',`i_password`='"+i_password+"',status='"+status+"' WHERE i_id="+i_id);
                                           //   session.setAttribute("msg","sucess");
                                              response.sendRedirect("instructortables.jsp");
                                          }

@@ -18,7 +18,8 @@
        ResultSet rs = DAL.DBConnect.SelectData("Select * from admin where a_email='"+email+"' and a_password='"+password+"'");
        ResultSet rs1 = DAL.DBConnect.SelectData("Select * from student where s_email='"+email+"' and s_password='"+password+"'");
        ResultSet rs2 = DAL.DBConnect.SelectData("Select * from instructor where i_email='"+email+"' and i_password='"+password+"'");
-        if(rs.next())
+       session.setAttribute("type", "" ); 
+       if(rs.next())
         { 
         String dbemail=rs.getString("a_email");
         String dbpassword=rs.getString("a_password");

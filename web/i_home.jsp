@@ -110,12 +110,17 @@
 			<div class="main-content">
 				<div class="container-fluid">
 					<!-- OVERVIEW -->
-					<!--<div class="panel panel-headline">
+					<%if(status.equals("Pending")){%><div class="panel panel-headline">
 						<div class="panel-heading">
-							<h3 class="panel-title">Weekly Overview</h3>
-							<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
-						</div>
-						<div class="panel-body">
+							<h3 class="panel-title">Your Registration Status is Pending</h3>
+							<p class="panel-subtitle">You can enjoy your priveleges past approval by the admin</p>
+						</div><% } %>
+					<%if(status.equals("Rejected")){%><div class="panel panel-headline">
+						<div class="panel-heading">
+							<h3 class="panel-title">Your Registration Status is Rejected</h3>
+							<p class="panel-subtitle">You can enjoy your priveleges past approval by the admin</p>
+						</div><% } %>
+                                                <!--	<div class="panel-body">
 							<div class="row">
 								<div class="col-md-3">
 									<div class="metric">

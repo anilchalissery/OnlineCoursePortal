@@ -13,7 +13,7 @@
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
-                                 String i_id = (String)session.getAttribute("i_id");
+                                 //String i_id = (String)session.getAttribute("i_id");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -111,7 +111,7 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Update Student Data</h3>
+					<h3 class="page-title">Update Instructor Data</h3>
 					<div class="row">
 						<div class="col-md-6">
 							<!-- BUTTONS -->
@@ -145,6 +145,9 @@
 									<br>
                                                                         <input type="text" class="form-control" placeholder="Email" name="i_email" value="<%out.print(rs.getString("i_email"));%>" readonly>
 									<br>
+                                                                        
+                                                                        
+									
                                                                         
 									<!--<input type="password" class="form-control" placeholder="password"  name="s_password" value="<%//out.print(rs.getString("s_password"));%>">-->
 									<br><input type="hidden" name="i_id" value="<%out.print(rs.getString("i_id"));%>">

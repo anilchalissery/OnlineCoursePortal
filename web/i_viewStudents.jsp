@@ -137,7 +137,7 @@
                                                                                                 
 											</tr>
 										</thead>
-										<tbody><%String i_id = (String)session.getAttribute("i_id");%>
+										<tbody><%//String i_id = (String)session.getAttribute("i_id");%>
 										<%ResultSet rs = DAL.DBConnect.SelectData("SELECT * FROM `course` where i_id="+i_id);
                                                                                  //   ResultSet rs1=DAL.DBConnect.SelectData("SELECT * FROM course INNER JOIN instructor on course.i_id=instructor.i_id");
                                                                                          int i=1;

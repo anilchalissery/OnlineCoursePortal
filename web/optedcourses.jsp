@@ -7,7 +7,7 @@
  <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				
-                            //    String s_id = (String)session.getAttribute("s_id");
+                                String s_id = (String)session.getAttribute("s_id");
 				%>
 <table class="table table-hover">
 										<thead>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : tables
-    Created on : Mar 18, 2019, 4:17:41 PM
+    Document   : approveInstructor
+    Created on : Apr 22, 2019, 8:17:23 PM
     Author     : test
 --%>
 
@@ -12,7 +12,7 @@
 <html lang="en">
 
 <head>
-	<title>Student Tables | Online Course Portal</title>
+	<title>Instructor table | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
@@ -60,9 +60,9 @@
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-			<!--	<div class="navbar-btn navbar-btn-right">
+				<!--<div class="navbar-btn navbar-btn-right">
 					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div> -->
+				</div>-->
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
@@ -112,9 +112,10 @@
 			<div class="main-content">
 				<div class="container-fluid">
 					<!--<h3 class="page-title">Tables</h3>-->
+					
 					<div class="row">
 						
-                                             <% 
+                                         <% 
                                              try
                                              {
                                              String msg = (String)session.getAttribute("msg");
@@ -129,66 +130,64 @@ catch(Exception e){
                                          %>
                                             
 						<div class="col-md-12">
-							<!-- TABLE NO PADDING -->
+							<!-- TABLE HOVER -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Student Table</h3>
+									<h3 class="panel-title">Instructor Table</h3>
 								</div>
-								<div class="panel-body no-padding">
-									<table class="table">
+								<div class="panel-body">
+									<table class="table table-hover">
 										<thead>
 											<tr>
-												
-												<th>Student Name</th>
+												<th>Instructor Name</th>
                                                                                                 <th>Gender</th>
-                                                                                                <th>Mobile Number</th>
+                                                                                                <th>Mobile No</th>
                                                                                                 <th>Email</th>
                                                                                                 <th>Password</th>
+                                                                                                <th>Status</th>
                                                                                                 
-                                                                                                <th align="right">  
-                                                                                                  <!--  <button type="button" class="btn btn-primary"></button> -->
-                                                                                                    <a href=insertstudentreg.jsp class="btn btn-primary">Insert</a>
-                                                                                                </th>
+                                                                                                <th></th>
+                                                                                                           
+                                                                   
+
 											</tr>
 										</thead>
-										<tbody><% ResultSet rs1 = DAL.DBConnect.SelectData("SELECT * FROM `student`");%>
-											<%while(rs1.next()){ %>
-											<tr>
-												<td><%out.print(rs1.getString("s_name")); %></td>
-                                                                                                <td><%out.print(rs1.getString("gender")); %></td>
-                                                                                                <td><%out.print(rs1.getString("s_mob")); %></td>
-                                                                                                <td><%out.print(rs1.getString("s_email")); %></td>
-                                                                                                <td><%out.print(rs1.getString("s_password")); %></td>
-                                                                                                
-                                                                                                <td><a href=UpdateStudentData.jsp?s_id=<% out.print(rs1.getString("s_id")); %> class="btn btn-warning">update</a></td>
-                                                                                                <td><a href=deletestudent.jsp?s_id=<% out.print(rs1.getString("s_id")); %> class="btn btn-danger">delete</a></td>
-                                                                                        
-                                                                                              
-											</tr>  <% } %>
+										<tbody><% ResultSet rs2 = DAL.DBConnect.SelectData("SELECT * FROM `instructor`");%>
+										<%while(rs2.next()){ %><tr>
+                
+                                                                                                            <td><%out.print(rs2.getString("i_name")); %></td>
+                                                                                                            <td><%out.print(rs2.getString("gender")); %></td>
+                                                                                                             <td><%out.print(rs2.getString("i_mob")); %></td>
+                                                                                                            <td><%out.print(rs2.getString("i_email")); %></td>
+                                                                                                            <td><%out.print(rs2.getString("i_password")); %></td>
+                                                                                                           <td><%out.print(rs2.getString("status")); %></td>
+                                                                                                            <td><a href=approveInstructorAction.jsp?i_id=<% out.print(rs2.getString("i_id")); %> class="btn btn-primary">Approve</a></td>
+                                                                                                            <td><a href=rejectInstructorAction.jsp?i_id=<% out.print(rs2.getString("i_id")); %> class="btn btn-danger">Reject</a></td>
+
+                                                                                                            <% } %>
+
+                                                                                                        </tr>
+                                                                                       
 										</tbody>
 									</table>
 								</div>
 							</div>
-							<!-- END TABLE NO PADDING -->
+							<!-- END TABLE HOVER -->
+                                                        
 						</div>
 					</div>
-					<div class="row">
-						                                                            	</div>
-					                                                   
+                                                                                                            	</div>
+						                                                            
                                                                                                             
                                                                                                             
                                                                                                             
                                                                                                             
                                                                                                             
                                                                                                             
-                                                     
-					</div>
+                                    
+						
 				</div>
 			</div>
-                                                                                
-                                                                         
-                                                                                
-                                                                                
 			<!-- END MAIN CONTENT -->
 		</div>
 		<!-- END MAIN -->

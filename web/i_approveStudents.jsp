@@ -137,7 +137,7 @@
                                                                                                 <th>Status</th>
 											</tr>
 										</thead>
-										<tbody><%String i_id = (String)session.getAttribute("i_id");%>
+										<tbody><%//String i_id = (String)session.getAttribute("i_id");%>
 										<%ResultSet rs = DAL.DBConnect.SelectData("SELECT * FROM `course` where i_id="+i_id);
                                                                                  //   ResultSet rs1=DAL.DBConnect.SelectData("SELECT * FROM course INNER JOIN instructor on course.i_id=instructor.i_id");
                                                                                          int i=1;
@@ -150,7 +150,7 @@
                                                                                         <td><%out.print(rs.getString("c_name"));%></td>
                                                                                         <td><%out.print(rs1.getString("s_name"));%></td>
                                                                                         <td><%out.print(rs1.getString("status"));%></td>
-                                                                                        <td><a href=i_approveAction.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%> class="btn btn-warning">Approve</a>   <a href=i_rejectAction.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%> class="btn btn-warning">Reject</a></td>
+                                                                                        <td><a href=i_approveAction.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%> class="btn btn-primary">Approve</a>   <a href=i_rejectAction.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%> class="btn btn-danger">Reject</a></td>
                                                                                            
                                                                                     </tr>
                                                                                     <% } 

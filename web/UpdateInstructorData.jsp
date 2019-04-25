@@ -137,7 +137,10 @@
 									<br>
                                                                         <input type="text" class="form-control" placeholder="Email" name="i_email" value="<%out.print(rs.getString("i_email"));%>" required>
 									<br>
-                                                                        
+                                                                        <select name="status" class="form-control">
+                                                                            <option value="Pending" >Pending</option>
+                                                                            <option value="Approved" >Approved</option>
+                                                                        </select><br>
 									<input type="password" class="form-control" placeholder="password"  name="i_password" value="<%out.print(rs.getString("i_password"));%>" required>
 									<br><input type="hidden" name="i_id" value="<%out.print(rs.getString("i_id"));%>">
                                                                         <input type="submit" value="Register" class="btn btn-primary">
