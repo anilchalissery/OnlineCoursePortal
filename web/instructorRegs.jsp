@@ -114,24 +114,13 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
+                                    
 					<h3 class="page-title">Instructor Registration</h3>
+                                        
 					<div class="row">
+                                            
 						<div class="col-md-6">
-							<!-- BUTTONS -->
-							<% 
-                                             try
-                                             {
-                                             String msg = (String)session.getAttribute("msg");
-                                         if(msg.equals("email"))
-                                         {
-                                             %>   <h3> Email already exists</h3>
-                                        <% }
-}
-catch(Exception e){
-
-}
-                                         %>
-							<!-- END BUTTONS -->
+							
 							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
@@ -158,30 +147,21 @@ catch(Exception e){
 									<input type="password" class="form-control" placeholder="password"  name="i_password" required>
 									<br>
                                                                         <input type="submit" value="Register" class="btn btn-primary">
-									
-								
+									<br>
+								<%
+                                                            if(request.getParameter("a")!=null)
+                                                            {
+                                                                  %> <jsp:include page="emailAlert.jsp"></jsp:include> <%
+                                                            }
+                                                        
+                                                        %>
 								</div>
 							</div>
 							<!-- END INPUTS -->
-							<!-- INPUT SIZING -->
 							
-							<!-- END INPUT SIZING -->
 						</div>
-						<div class="col-md-6">
-							<!-- LABELS -->
-							
-							<!-- END LABELS -->
-							<!-- PROGRESS BARS -->
-							
-							<!-- END PROGRESS BARS -->
-							<!-- INPUT GROUPS -->
 						
-							<!-- END INPUT GROUPS -->
-							<!-- ALERT MESSAGES -->
-							
-							<!-- END ALERT MESSAGES -->
-						</div>
-					</div>
+					
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->
