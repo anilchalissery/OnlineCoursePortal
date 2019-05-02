@@ -148,8 +148,7 @@
 									<!--</div>-->
               
 									<br>
-                                                                        <input type="file" name="datafile" placeholder="datafile (zip/rar/..)" class="form-control" value="<%out.print(rs.getString("datafile"));%>">
-                                                                        <br>
+                                                                       
                                                                         <input type="hidden" name="c_id" value="<%out.print(rs.getString("c_id"));%>">
                                                                         <input type="hidden" name="i_id" value="<%out.print(i_id);%>">
                                                                         <input type="submit" value="Register" class="btn btn-primary">

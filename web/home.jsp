@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="DAL.DBConnect"%>
 <!doctype html>
 <html lang="en">
 
@@ -13,7 +15,10 @@
 					 <jsp:forward page="Login.jsp"/>
 		<%	
 				}
-		if(type.equals("admin")){		
+
+		if(type.equals("admin")){
+ResultSet rs=DBConnect.SelectData("SELECT COUNT(s_name) as tot FROM `student` ");
+rs.next();
 		%> 
                 
 	<meta charset="utf-8">
@@ -117,7 +122,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa fa-download"></i></span>
 										<p>
-											<span class="number">1,252</span>
+											<span class="number"><%out.print(rs.getString("tot"));%></span>
 											<span class="title">Students</span>
 										</p>
 									</div>
@@ -467,7 +472,7 @@
 				<p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
 			</div>
 		</footer>
-	</div><%}%>
+	</div><%  } %>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>

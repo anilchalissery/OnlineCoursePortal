@@ -16,9 +16,9 @@
         String aboutcourse=request.getParameter("aboutcourse");
         String duration=request.getParameter("duration");
         String dept=request.getParameter("dept");
-        String datafile=request.getParameter("datafile");
+        
       //  String i_id="2";
-        DAL.DBConnect.ExecuteQuery("INSERT INTO `course`( `c_name`, `about_course`, `i_id`, `duration`, `dept`, `datafile`) VALUES ('"+c_name+"','"+aboutcourse+"','"+i_id+"','"+duration+"','"+dept+"','"+datafile+"')");
+        DAL.DBConnect.ExecuteQuery("INSERT INTO `course`( `c_name`, `about_course`, `i_id`, `duration`, `dept`) VALUES ('"+c_name+"','"+aboutcourse+"','"+i_id+"','"+duration+"','"+dept+"')");
       response.sendRedirect("i_viewcourses.jsp");
 %>
     </head>

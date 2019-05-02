@@ -138,7 +138,7 @@
 										<span class="input-group-btn"><a href="InsertDept.jsp" class="btn btn-primary" type="button" >Other</a></span>
 									</div>
                 <br>
-                                                                        <input type="file" name="datafile" placeholder="datafile (zip/rar/..)" class="form-control">
+                                                                       
                                                                         <br>
                                                                         <input type="submit" value="Register" class="btn btn-primary">
                                                                         </form>

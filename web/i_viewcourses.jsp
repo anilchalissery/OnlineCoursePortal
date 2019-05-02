@@ -166,7 +166,7 @@ catch(Exception e){
                                                                                            <td><%out.print(rs.getString("duration"));%></td>
                                                                                             <td><%out.print(rs.getString("dept"));%></td>
                                                                                              <td><%out.print(rs.getString("datafile"));%></td>
-                                                                                             
+                                                                                             <td><a href=i_addmaterials.jsp?c_id=<%out.print(rs.getString("c_id"));%> class="btn btn-warning">upload data</a></td>
                                                                                              <td><a href=i_UpdateCourseDataTable.jsp?c_id=<%out.print(rs.getString("c_id"));%> class="btn btn-warning">update</a></td>
                                                                                              <td><a href=deletecoursedata.jsp?c_id=<%out.print(rs.getString("c_id"));%> class="btn btn-danger">delete</a></td>
                                                                                     </tr>

@@ -17,6 +17,7 @@ import java.sql.Statement;
  */
 public class DBConnect {
      static Connection con;
+      public static int c_id=0;
 	
      public static Connection Connect()
 	{

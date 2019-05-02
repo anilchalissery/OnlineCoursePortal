@@ -1,22 +1,24 @@
 <%-- 
-    Document   : s_opted_courses
-    Created on : Apr 8, 2019, 8:58:46 PM
+    Document   : i_addmaterials
+    Created on : May 2, 2019, 3:11:31 PM
     Author     : test
 --%>
-
+<%-- 
+    Document   : i_addCourse
+    Created on : Apr 13, 2019, 8:55:46 PM
+    Author     : test
+--%>
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Course Opted Students | Online Course Portal</title>
+	<title>Insert Course  | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
-                                String s_id = (String)session.getAttribute("s_id");
+                                DBConnect.c_id=Integer.valueOf(request.getParameter("c_id"));
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -49,7 +51,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="s_home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -106,95 +108,54 @@
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-		<%@ include file = "s_left_sidebar.jsp" %>
+		<!-- LEFT SIDEBAR -->
+		<%@ include file = "i_left_sidebar.jsp" %>
+		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title">Course that you have Opted for</h3>
+					<h3 class="page-title">Elements</h3>
 					<div class="row">
-						
-						
-					<div class="row">
-						                                                            	</div>
-						<div class="col-md-12">
-							<!-- TABLE HOVER -->
+						<div class="col-md-6">
+							<!-- BUTTONS -->
+							
+							<!-- END BUTTONS -->
+							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title"></h3>
+									<h3 class="panel-title">Inputs</h3>
 								</div>
-                                                            
-                                                            <% 
-                                             try
-                                             {
-                                             String msg1 = (String)session.getAttribute("msg1");
-                                         if(msg1.equals("sucess"))
-                                         {
-                                        %>   <%@ include file = "appliedsucessalert.jsp" %>
-                                        <% }
-}
-catch(Exception e){
-
-}
-                                         %>
-                                                            
 								<div class="panel-body">
-									<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>Course name</th>
-                                                                                                <th>About course</th>
-                                                                                               <!--  <th>instructor_name</th>-->
-                                                                                                  <th>Duration</th>
-                                                                                                   <th>Department</th>
-                                                                                                 <th>Review</th>
-                                                                                                 <th>Status</th>
-                                                                                                 
-                                                                                             <!--    <th><a href="course_opting.jsp" class="btn btn-primary">Insert</a></th> -->
-											</tr>
-										</thead>
-										<tbody>
-											 <%
-               ResultSet rs5=DAL.DBConnect.SelectData("SELECT * FROM `course_opted` INNER JOIN student on course_opted.s_id=student.s_id where student.s_id="+s_id);
-           
-          
-           //
-           while(rs5.next()) {
-          ResultSet rs6=DAL.DBConnect.SelectData("SELECT * FROM `course_opted` INNER JOIN course on course_opted.c_id=course.c_id where course.c_id="+rs5.getString("c_id")+" and course_opted.s_id="+rs5.getString("s_id"));
-                while(rs6.next()) {
-           %>
-           <tr>
-               <td><%out.print(rs6.getString("c_name"));%></td>
-               <td><%out.print(rs6.getString("about_course"));%></td>
-            <!--   <td><%//out.print(rs1.getString("i_name"));%></td> -->
-                <td><%out.print(rs6.getString("duration"));%></td>
-                <td><%out.print(rs6.getString("dept"));%></td>
-                  <td><%out.print(rs6.getString("review"));%></td>
-                  <td><%out.print(rs6.getString("status"));%></td>
-                  <td><a href="download.jsp?f=C:\Files\<% out.print(rs6.getString("c_id"));%>" class="btn btn-danger">Download</a></td> 
-                  
-                   
-                  
-               <!--     <td><a href=deletecourseoptingdata.jsp?co_id=<%//out.print(rs5.getString("co_id"));%> class="btn btn-danger">delete</a></td> -->
-           </tr>
-           <% } 
-                    } %>
-										</tbody>
-									</table>
+									<form action="UploadFile" method="post" enctype="multipart/form-data">
+                <input class="form-control" type="file" name="file" /> 
+                <%String c_id=request.getParameter("c_id");%>
+                <input  type="hidden" name="c_id" value="<%out.print(c_id);%>" />
+                <input class="form-control" type="submit" value="upload" />
+        </form>
+								
 								</div>
 							</div>
-							<!-- END TABLE HOVER -->
+							<!-- END INPUTS -->
+							<!-- INPUT SIZING -->
+							
+							<!-- END INPUT SIZING -->
 						</div>
-					</div>
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                     
+						<div class="col-md-6">
+							<!-- LABELS -->
+							
+							<!-- END LABELS -->
+							<!-- PROGRESS BARS -->
+							
+							<!-- END PROGRESS BARS -->
+							<!-- INPUT GROUPS -->
+						
+							<!-- END INPUT GROUPS -->
+							<!-- ALERT MESSAGES -->
+							
+							<!-- END ALERT MESSAGES -->
+						</div>
 					</div>
 				</div>
 			</div>
