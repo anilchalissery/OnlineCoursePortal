@@ -105,7 +105,28 @@
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-		<%@ include file = "left_sidebar.jsp" %>
+		
+
+<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+					
+						<li><a href="approveInstructor.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Approve Instructors</span></a></li>
+				                <li><a href="studenttables.jsp" class=""><i class="lnr lnr-dice"></i>Student Table</a></li>
+									<li><a href="instructortables.jsp" class=""><i class="lnr lnr-dice"></i>Instructor Table</a></li>
+									<li><a href="courseoptedtable.jsp" class="active"><i class="lnr lnr-dice"></i>Course opted Table</a></li>
+                                                                        <li><a href="coursedatatable.jsp" class=""><i class="lnr lnr-dice"></i>Course Table</a></li>
+                                                                        <li><a href="depttable.jsp" class=""><i class="lnr lnr-dice"></i>Departments table</a></li>
+                                                                        <li><a href="intract1.jsp" class=""><i class="lnr lnr-dice"></i>Chat table</a></li>
+				
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -117,7 +138,7 @@
 						
 					<div class="row">
 						                                                            	</div>
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<!-- TABLE HOVER -->
 							<div class="panel">
 								<div class="panel-heading">
@@ -149,7 +170,7 @@
                   <td><%out.print(rs6.getString("review"));%></td>
                    <td><%out.print(rs6.getString("status"));%></td>
                   
-                    <td><a href=deletecourseoptingdata.jsp?co_id=<%out.print(rs5.getString("co_id"));%> class="btn btn-danger">delete</a></td> 
+             <!--       <td><a href=deletecourseoptingdata.jsp?co_id=<%out.print(rs5.getString("co_id"));%> class="btn btn-danger">delete</a></td> -->
            </tr>
            <% } %>
 										</tbody>

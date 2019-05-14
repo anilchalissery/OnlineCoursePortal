@@ -24,16 +24,17 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
-        <script type="text/javaScript">
-function disableBackButton()
+        <script>
+history.pushState(null,document.title, location.href);
+window.addEventListener('popstate',function(event))
 {
-window.history.forward();
-}
-setTimeout("disableBackButton()", 0);
+    history.pushState(null,document.title,location.href);
+    
+});
 </script>
 </head>
 
-<body onload="disableBackButton()">
+<body >
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<div class="vertical-align-wrap">

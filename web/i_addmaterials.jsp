@@ -118,7 +118,7 @@
 				<div class="container-fluid">
 					<h3 class="page-title">Elements</h3>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<!-- BUTTONS -->
 							
 							<!-- END BUTTONS -->

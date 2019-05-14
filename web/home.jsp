@@ -19,6 +19,12 @@
 		if(type.equals("admin")){
 ResultSet rs=DBConnect.SelectData("SELECT COUNT(s_name) as tot FROM `student` ");
 rs.next();
+ResultSet rs1=DBConnect.SelectData("SELECT COUNT(i_name) as tot FROM `instructor` ");
+rs1.next();
+ResultSet rs2=DBConnect.SelectData("SELECT COUNT(c_name) as tot FROM `course` ");
+rs2.next();
+ResultSet rs3=DBConnect.SelectData("SELECT COUNT(dept_name) as tot FROM `department` ");
+rs3.next();
 		%> 
                 
 	<meta charset="utf-8">
@@ -104,7 +110,28 @@ rs.next();
 			</div>
 		</nav>
 		<!-- END NAVBAR --> 
-		<%@ include file = "left_sidebar.jsp" %>
+		
+
+<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="home.jsp" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+					
+						<li><a href="approveInstructor.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Approve Instructors</span></a></li>
+				                <li><a href="studenttables.jsp" class=""><i class="lnr lnr-dice"></i>Student Table</a></li>
+									<li><a href="instructortables.jsp" class=""><i class="lnr lnr-dice"></i>Instructor Table</a></li>
+									<li><a href="courseoptedtable.jsp" class=""><i class="lnr lnr-dice"></i>Course opted Table</a></li>
+                                                                        <li><a href="coursedatatable.jsp" class=""><i class="lnr lnr-dice"></i>Course Table</a></li>
+                                                                        <li><a href="depttable.jsp" class=""><i class="lnr lnr-dice"></i>Departments table</a></li>
+                                                                        <li><a href="intract1.jsp" class=""><i class="lnr lnr-dice"></i>Chat table</a></li>
+				
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
@@ -120,7 +147,7 @@ rs.next();
 							<div class="row">
 								<div class="col-md-3">
 									<div class="metric">
-										<span class="icon"><i class="fa fa-download"></i></span>
+										<span class="icon"><i class="fa fa-users"></i></span>
 										<p>
 											<span class="number"><%out.print(rs.getString("tot"));%></span>
 											<span class="title">Students</span>
@@ -129,28 +156,28 @@ rs.next();
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<span class="icon"><i class="fa fa-shopping-bag"></i></span>
+										<span class="icon"><i class="fa fa-graduation-cap"></i></span>
 										<p>
-											<span class="number">203</span>
+											<span class="number"><%out.print(rs1.getString("tot"));%></span>
 											<span class="title">Instructors</span>
 										</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<span class="icon"><i class="fa fa-eye"></i></span>
+										<span class="icon"><i class="fa fa-address-book"></i></span>
 										<p>
-											<span class="number">274,678</span>
+											<span class="number"><%out.print(rs2.getString("tot"));%></span>
 											<span class="title">Courses</span>
 										</p>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="metric">
-										<span class="icon"><i class="fa fa-bar-chart"></i></span>
+										<span class="icon"><i class="fa fa-university"></i></span>
 										<p>
-											<span class="number">35%</span>
-											<span class="title">Conversions</span>
+											<span class="number"><%out.print(rs3.getString("tot"));%></span>
+											<span class="title">Departments</span>
 										</p>
 									</div>
 								</div>

@@ -42,7 +42,8 @@ public class UploadFile extends HttpServlet {
                    for (FileItem item : multiparts) {
                    if (!item.isFormField()) {
                    String name = new File(item.getName()).getName();
-                   item.write(new File(UPLOAD_DIRECTORY + File.separator + DBConnect.c_id ));
+                   DAL.DBConnect.ExecuteQuery("update course set datafile='"+name+"' where c_id='"+DBConnect.c_id+"'");
+                   item.write(new File(UPLOAD_DIRECTORY + File.separator + DBConnect.c_id + name));
                    }
                 }
                         

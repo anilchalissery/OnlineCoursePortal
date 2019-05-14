@@ -10,12 +10,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
     
 		<% session.invalidate();
-            
+            response.sendRedirect("Login.jsp");
                 %> <!-- HERE WE ARE INVALIDATE THE SESSION, SO THAT NO VALUES WILL BE PRESENT IN SESSION -->
-		<jsp:forward page="Login.jsp"/>
-	
+		
+	  <script>
+history.pushState(null,document.title, location.href);
+window.addEventListener('popstate',function(event))
+{
+    history.pushState(null,document.title,location.href);
+    
+});
+</script>
     </head>
     <body>
         <h1>Hello World!</h1>

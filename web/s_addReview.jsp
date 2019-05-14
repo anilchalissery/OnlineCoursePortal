@@ -1,21 +1,18 @@
 <%-- 
-    Document   : tables
-    Created on : Mar 18, 2019, 4:17:41 PM
+    Document   : s_addReview
+    Created on : May 14, 2019, 10:35:36 AM
     Author     : test
 --%>
-
-<%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Department Table | Online Course Portal</title>
+	<title>Add review | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
+                                 String s_id = (String)session.getAttribute("s_id");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -48,7 +45,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="home.jsp"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="s_home.jsp"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -105,22 +102,17 @@
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-		
-
-<!-- LEFT SIDEBAR -->
+		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-					
-						<li><a href="approveInstructor.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Approve Instructors</span></a></li>
-				                <li><a href="studenttables.jsp" class=""><i class="lnr lnr-dice"></i>Student Table</a></li>
-									<li><a href="instructortables.jsp" class=""><i class="lnr lnr-dice"></i>Instructor Table</a></li>
-									<li><a href="courseoptedtable.jsp" class=""><i class="lnr lnr-dice"></i>Course opted Table</a></li>
-                                                                        <li><a href="coursedatatable.jsp" class=""><i class="lnr lnr-dice"></i>Course Table</a></li>
-                                                                        <li><a href="depttable.jsp" class="active"><i class="lnr lnr-dice"></i>Departments table</a></li>
-                                                                        <li><a href="intract1.jsp" class=""><i class="lnr lnr-dice"></i>Chat table</a></li>
+						<li><a href="s_home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                                                 <li><a href="s_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
+                                                 <li><a href="s_Opt_course.jsp" class=""><i class="fa fa-search"></i>Opt Course</a></li>
+                                                <li><a href="s_opted_courses.jsp" class="active"><i class="fa fa-line-chart"></i>Opted Course</a></li>
+                                                <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Queries</a></li>
+							
 				
 					</ul>
 				</nav>
@@ -132,59 +124,54 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-				<!--	<h3 class="page-title">Tables</h3> -->
-					
+					<h3 class="page-title">Update Student Data</h3>
 					<div class="row">
-                                            
-                                            <% 
-                                             try
-                                             {
-                                             String msg = (String)session.getAttribute("msg");
-                                         if(msg.equals("sucess"))
-                                         {
-                                        %>   <%@ include file = "sucessalert.jsp" %>
-                                        <% }
-}
-catch(Exception e){
-
-}
-                                         %>
-                                            
-						<div class="col-md-12">
-							<!-- TABLE STRIPED -->
+						<div class="col-md-6">
+							<!-- BUTTONS -->
+							
+							<!-- END BUTTONS -->
+							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Department data</h3>
+									<h3 class="panel-title"></h3>
 								</div>
 								<div class="panel-body">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th>Sl.no</th>
-												<th>department name</th>
-												<th></th>
-                                                                                                <th><a href=InsertDept.jsp class="btn btn-primary">Insert</a></th>
-											</tr>
-										</thead>
-										<tbody>
-										<%ResultSet rs7=DBConnect.SelectData("SELECT * FROM `department`");%>	
-                                                                                     <% int i=1;
-                    while(rs7.next()){
-                    %>
-                    <tr>
-                        <td><%out.print(i);i++;%></td>
-                        <td><%out.print(rs7.getString("dept_name"));%></td>
-                       <td><a href=UpdateDeptTable.jsp?dept_id=<% out.print(rs7.getString("dept_id")); %> class="btn btn-warning">update</a></td>
-                <td><a href=deletedept.jsp?dept_id=<% out.print(rs7.getString("dept_id")); %> class="btn btn-danger">delete</a></td>
-                
-                    </tr>
-                   <% } %>
-										</tbody>
-									</table>
+                                                                   <form action="s_addReviewAction.jsp" method="POST"><%
+        //String s_id=request.getParameter("s_id");
+        String c_id=request.getParameter("c_id");
+        ResultSet rs=DAL.DBConnect.SelectData("select * from course_opted where s_id="+s_id+" and c_id="+c_id);
+        rs.next();
+        %>
+                                                                        
+        <textarea name="review" placeholder="Add your review" class="form-control" ></textarea>
+									<!--<input type="password" class="form-control" placeholder="password"  name="s_password" value="<%//out.print(rs.getString("s_password"));%>">-->
+									<br><input type="hidden" name="s_id" value="<%out.print(rs.getString("s_id"));%>">
+                                                                        <br><input type="hidden" name="c_id" value="<%out.print(rs.getString("s_id"));%>">
+                                                                        <input type="submit" value="Update" class="btn btn-primary">
+									
+                                                                    </form>
 								</div>
 							</div>
-							<!-- END TABLE STRIPED -->
+							<!-- END INPUTS -->
+							<!-- INPUT SIZING -->
+							
+							<!-- END INPUT SIZING -->
 						</div>
+						<div class="col-md-6">
+							<!-- LABELS -->
+							
+							<!-- END LABELS -->
+							<!-- PROGRESS BARS -->
+							
+							<!-- END PROGRESS BARS -->
+							<!-- INPUT GROUPS -->
+						
+							<!-- END INPUT GROUPS -->
+							<!-- ALERT MESSAGES -->
+							
+							<!-- END ALERT MESSAGES -->
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- END MAIN CONTENT -->
