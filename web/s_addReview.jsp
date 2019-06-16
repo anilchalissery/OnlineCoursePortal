@@ -146,7 +146,7 @@
         <textarea name="review" placeholder="Add your review" class="form-control" ></textarea>
 									<!--<input type="password" class="form-control" placeholder="password"  name="s_password" value="<%//out.print(rs.getString("s_password"));%>">-->
 									<br><input type="hidden" name="s_id" value="<%out.print(rs.getString("s_id"));%>">
-                                                                        <br><input type="hidden" name="c_id" value="<%out.print(rs.getString("s_id"));%>">
+                                                                        <br><input type="hidden" name="c_id" value="<%out.print(rs.getString("c_id"));%>">
                                                                         <input type="submit" value="Update" class="btn btn-primary">
 									
                                                                     </form>

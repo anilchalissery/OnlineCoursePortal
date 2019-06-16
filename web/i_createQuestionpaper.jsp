@@ -1,18 +1,17 @@
 <%-- 
-    Document   : tables
-    Created on : Mar 18, 2019, 4:17:41 PM
+    Document   : i_createQuestionpaper
+    Created on : May 20, 2019, 10:56:26 AM
     Author     : test
 --%>
 
+
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!doctype html>
 <html lang="en">
 
 <head>
-	<title>Course Opted Students | Online Course Portal</title>
+	<title>Insert Course  | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
@@ -63,12 +62,12 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						
-						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								
+								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
+								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
@@ -80,23 +79,25 @@
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-		
-
-<!-- LEFT SIDEBAR -->
+		<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
-			<div class="sidebar-scroll">
+			<div class="sidebar-scroll"><%String i_id = (String)session.getAttribute("i_id");
+                    ResultSet rss=DBConnect.SelectData("select * from instructor where i_id="+i_id);
+                    rss.next();
+                    String status = rss.getString("status");
+                    %>
 				<nav>
 					<ul class="nav">
-						<li><a href="home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-					
-						<li><a href="approveInstructor.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Approve Instructors</span></a></li>
-				                <li><a href="studenttables.jsp" class=""><i class="lnr lnr-dice"></i>Student Table</a></li>
-									<li><a href="instructortables.jsp" class=""><i class="lnr lnr-dice"></i>Instructor Table</a></li>
-									<li><a href="courseoptedtable.jsp" class="active"><i class="lnr lnr-dice"></i>Course opted Table</a></li>
-                                                                        <li><a href="coursedatatable.jsp" class=""><i class="lnr lnr-dice"></i>Course Table</a></li>
-                                                                        <li><a href="depttable.jsp" class=""><i class="lnr lnr-dice"></i>Departments table</a></li>
-                                                                        <li><a href="intract1.jsp" class=""><i class="lnr lnr-dice"></i>Chat table</a></li>
-				
+						<li><a href="i_home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                                                <li><a href="i_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
+						<%if(status.equals("Approved")){%><li><a href="i_approveStudents.jsp" class=""><i class="lnr lnr-alarm"></i>Approve Registration</a></li>
+				                
+                                                <li><a href="i_addCourse.jsp" class="active"><i class="lnr lnr-file-add"></i>Add Course</a></li>
+                                                <li><a href="i_viewcourses.jsp" class=""><i class="lnr lnr-enter"></i>View added Courses</a></li>
+                                                <li><a href="i_viewStudents.jsp" class=""><i class="lnr lnr-users"></i>View Students</a></li>
+                                              <!--  <li><a href="i_answer.jsp" class=""><i class="lnr lnr-bubble"></i>Answer Students</a></li>-->
+                                                <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Interacts</a></li>
+						<% } %>
 					</ul>
 				</nav>
 			</div>
@@ -107,64 +108,40 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title"></h3>
+					<h3 class="page-title">Add Course
+                                        </h3>
 					<div class="row">
-						
-						
-					<div class="row">
-						                                                            	</div>
 						<div class="col-md-12">
-							<!-- TABLE HOVER -->
+							
+							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Course Opting table</h3>
+									<h3 class="panel-title">Inputs</h3>
 								</div>
 								<div class="panel-body">
-									<table class="table table-hover">
-										<thead>
-											<tr>
-											<th>Student name</th>	
-                                                                                            <th>Course name</th>
-                                                                                                
-                                                                                                 <th>Review</th>
-                                                                                                 <th>Status</th>
-                                                                                             <!--    <th><a href="course_opting.jsp" class="btn btn-primary">Insert</a></th> -->
-											</tr>
-										</thead>
-										<tbody>
-											 <%
-               ResultSet rs5=DAL.DBConnect.SelectData("SELECT * FROM `course_opted` INNER JOIN student on course_opted.s_id=student.s_id");
-           ResultSet rs6=DAL.DBConnect.SelectData("SELECT * FROM `course_opted` INNER JOIN course on course_opted.c_id=course.c_id");
-          
-           //
-           while(rs6.next()&& rs5.next()) {
-          
-           %>
-           <tr>
-               <td><%out.print(rs5.getString("s_name"));%></td>
-               <td><%out.print(rs6.getString("c_name"));%></td>
-               
-                  <td><%out.print(rs6.getString("review"));%></td>
-                   <td><%out.print(rs6.getString("status"));%></td>
-                  
-             <!--       <td><a href=deletecourseoptingdata.jsp?co_id=<%out.print(rs5.getString("co_id"));%> class="btn btn-danger">delete</a></td> -->
-           </tr>
-           <% } %>
-										</tbody>
-									</table>
+									<form action="i_prepareTest.jsp" method="post">
+									
+									<br>
+                                                                 
+                <div class="input-group">
+										<select name="c_id" class="form-control"><%ResultSet rs8=DBConnect.SelectData("SELECT * FROM `course` WHERE i_id="+i_id);
+                                                                            while(rs8.next()){%>
+                            <option value="<%out.print(rs8.getString("c_id"));%>"><%out.print(rs8.getString("c_name"));%></option>
+                <% }  %>        </select>
+										
+									</div>
+                <br>
+                                                                       
+                                                                        <br>
+                                                                        <input type="submit" value="Submit" class="btn btn-primary">
+                                                                        </form>
+								
 								</div>
 							</div>
-							<!-- END TABLE HOVER -->
+							<!-- END INPUTS -->
+						
 						</div>
-					</div>
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                     
+						
 					</div>
 				</div>
 			</div>

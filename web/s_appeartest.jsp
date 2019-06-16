@@ -1,6 +1,6 @@
 <%-- 
-    Document   : intract1
-    Created on : Apr 15, 2019, 8:48:33 PM
+    Document   : s_Opt_course
+    Created on : Apr 8, 2019, 4:29:05 PM
     Author     : test
 --%>
 
@@ -10,11 +10,11 @@
 <html lang="en">
 
 <head>
-	<title>Insert Question  | Online Course Portal</title>
+	<title>Update student data table | Online Course Portal</title>
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
-		String type = (String)session.getAttribute("type");		
-                String uid = (String)session.getAttribute("user");
+				String uid = (String)session.getAttribute("user");
+                                 String s_id = (String)session.getAttribute("s_id");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -47,7 +47,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="#"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
+				<a href="s_home.jsp"><img src="assets/img/logo.png" alt="ocp Logo" class="img-responsive logo"></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -59,13 +59,11 @@
 						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
 					</div>
 				</form>
-				<!--<div class="navbar-btn navbar-btn-right">
-					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div>-->
+				
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="i_home.jsp" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								<i class="lnr lnr-alarm"></i>
 								<span class="badge bg-danger">5</span>
 							</a>
@@ -90,60 +88,43 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="i_profile.jsp"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
-						<!-- <li>
-							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-						</li> -->
+						
 					</ul>
 				</div>
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<%if(type.equals("admin")){ %>
-                
-
-<!-- LEFT SIDEBAR -->
 		<div id="sidebar-nav" class="sidebar">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-					
-						<li><a href="approveInstructor.jsp" class=""><i class="lnr lnr-alarm"></i> <span>Approve Instructors</span></a></li>
-				                <li><a href="studenttables.jsp" class=""><i class="lnr lnr-dice"></i>Student Table</a></li>
-									<li><a href="instructortables.jsp" class=""><i class="lnr lnr-dice"></i>Instructor Table</a></li>
-									<li><a href="courseoptedtable.jsp" class=""><i class="lnr lnr-dice"></i>Course opted Table</a></li>
-                                                                        <li><a href="coursedatatable.jsp" class=""><i class="lnr lnr-dice"></i>Course Table</a></li>
-                                                                        <li><a href="depttable.jsp" class=""><i class="lnr lnr-dice"></i>Departments table</a></li>
-                                                                        <li><a href="intract1.jsp" class="active"><i class="lnr lnr-dice"></i>Chat table</a></li>
+						<li><a href="s_home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                                                 <li><a href="s_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
+                                                 <li><a href="s_Opt_course.jsp" class="active"><i class="fa fa-search"></i>Opt Course</a></li>
+                                                <li><a href="s_opted_courses.jsp" class=""><i class="fa fa-line-chart"></i>Opted Course</a></li>
+                                                <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Queries</a></li>
+							
 				
 					</ul>
 				</nav>
 			</div>
 		</div>
 		<!-- END LEFT SIDEBAR -->
-		<% } 
-               // else 
-               // {%>
-                
-                
-                
-                <!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<h3 class="page-title"></h3>
-					<div class="row"><%ResultSet rs=DAL.DBConnect.SelectData("SELECT * FROM `question` INNER JOIN student on question.s_id=student.s_id");
-                                                               int i=1;     
-                                      while(rs.next()){ %>
+					<h3 class="page-title">TEST BEGINS</h3>
+                                          
+					<div class="row">
 						<div class="col-md-12">
 							<!-- BUTTONS -->
 							
@@ -151,35 +132,64 @@
 							<!-- INPUTS -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Question <%out.print(i);i++;%></h3>
+									<h3 class="panel-title"></h3>
 								</div>
 								<div class="panel-body">
-                                                                    <form action="s_queriesaction.jsp" method="post">
-                                                                    <textarea class="form-control" name="question" readonly><%out.print(rs.getString("s_name"));%> : <%out.print(rs.getString("question"));%> </textarea>
-                                                                    <br>
-                                                                            <%       ResultSet rs1=DAL.DBConnect.SelectData("SELECT * FROM `answers` INNER JOIN instructor on answers.i_id=instructor.i_id where q_id="+rs.getString("q_id"));
-                                                                            
-                                                                        while(rs1.next()){
-                                                                        
-                                                                    %>
-                                                                           
-                                                                           <textarea class="form-control" name="answer" readonly>                       <%out.print(rs1.getString("i_name"));%> : <%out.print(rs1.getString("answer"));%></textarea>
-                                                                        <br>
-                                                                       
-                                                                        <% }
-%>
- <!--<a href=i_answer.jsp class="btn btn-primary">Comment</a>-->
+                                                                   <form action="appeartestAction.jsp" method="POST">
+                                                                     <%
+                                                                     String c_id=request.getParameter("c_id");
+                                                                     ResultSet rs1= DBConnect.SelectData("SELECT * FROM `testresults` WHERE c_id="+c_id+" and s_id="+s_id);
+                                                                     if(rs1.next()== true)
+                                                                     {
+                                                                         session.setAttribute("msg","retest");
+                                                                         response.sendRedirect("s_test.jsp");
+                                                                     }
+                                                                     ResultSet rs= DBConnect.SelectData("SELECT * FROM `course` WHERE c_id="+c_id);
+                                                                     rs.next();
+                                                                     %>           
+                                                                     <input type="text" class="form-control" value="<%out.print(rs.getString("c_name"));%>">           
+                                                                      <br>
+                                                                     <%ResultSet rs2=DBConnect.SelectData("SELECT * FROM `test` WHERE c_id="+c_id); 
+                                                                     int i=1;
+                                                                         while(rs2.next()){%>
+                                                                           <br><input type="text" class="form-control" name="<%out.print(rs2.getString("test_id"));%>" value="<%out.print(rs2.getString("q_no")+". ");%><%out.print(rs2.getString("Question"));%>">               
+                                                                         <br>  <input type="radio"  name="q<%out.print(i);%>" value="1"><%out.print(rs2.getString("oa"));%>
+                                                                           <input type="radio"  name="q<%out.print(i);%>" value="2"><%out.print(rs2.getString("ob"));%>
+                                                                           <input type="radio"  name="q<%out.print(i);%>" value="3"><%out.print(rs2.getString("oc"));%>
+                                                                           <input type="radio"  name="q<%out.print(i);%>" value="4"><%out.print(rs2.getString("od"));%><br>
+                                                                <%       i++;  }
+                                                                             %>           
+                                                                             <input type="hidden" name="noQ" value="<%out.print(i-1);%>">
+                                                                             <input type="hidden" name="c_id" value="<%out.print(c_id);%>">
+                                                                             <br><input type="Submit" class="btn btn-primary">
+									
                                                                     </form>
-</div>
+								</div>
+							</div>
+							<!-- END INPUTS -->
+							<!-- INPUT SIZING -->
+							
+							<!-- END INPUT SIZING -->
+						</div>
+						<div class="col-md-6">
+							<!-- LABELS -->
+							
+							<!-- END LABELS -->
+							<!-- PROGRESS BARS -->
+							
+							<!-- END PROGRESS BARS -->
+							<!-- INPUT GROUPS -->
+						
+							<!-- END INPUT GROUPS -->
+							<!-- ALERT MESSAGES -->
+							
+							<!-- END ALERT MESSAGES -->
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- END MAIN CONTENT -->
 		</div>
-
-<% } %>
-                                                                       
-								
-								
-				
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<footer>

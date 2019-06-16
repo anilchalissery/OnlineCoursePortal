@@ -166,10 +166,10 @@ catch(Exception e){
 									<div class="profile-info">
 										<h4 class="heading">Social</h4>
 										<ul class="list-inline social-icons">
-											<li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#" class="google-plus-bg"><i class="fa fa-google-plus"></i></a></li>
-											<li><a href="#" class="github-bg"><i class="fa fa-github"></i></a></li>
+											<li><a href="https://www.facebook.com/onlinecourses.ooo/" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+											<li><a href="https://twitter.com/crunchadeal?lang=en" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+											
+											<li><a href="https://github.com/anilchalissery/OnlineCoursePortal" class="github-bg"><i class="fa fa-github"></i></a></li>
 										</ul>
 									</div>
                                                                         
