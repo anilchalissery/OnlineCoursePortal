@@ -1,9 +1,8 @@
 <%-- 
-    Document   : i_approveStudents
-    Created on : Apr 18, 2019, 2:49:32 PM
+    Document   : i_viewResults
+    Created on : Jun 19, 2019, 10:12:46 PM
     Author     : test
 --%>
-
 
 <%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
@@ -64,6 +63,7 @@
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						
+						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
@@ -91,13 +91,13 @@
 					<ul class="nav">
 						<li><a href="i_home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                                                 <li><a href="i_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
-						<%if(status.equals("Approved")){%><li><a href="i_approveStudents.jsp" class="active"><i class="lnr lnr-alarm"></i>Approve Registration</a></li>
+						<%if(status.equals("Approved")){%><li><a href="i_approveStudents.jsp" class=""><i class="lnr lnr-alarm"></i>Approve Registration</a></li>
 				                
                                                 <li><a href="i_addCourse.jsp" class=""><i class="lnr lnr-file-add"></i>Add Course</a></li>
                                                 <li><a href="i_viewcourses.jsp" class=""><i class="lnr lnr-enter"></i>View added Courses</a></li>
                                                 <li><a href="i_viewStudents.jsp" class=""><i class="lnr lnr-users"></i>View Students</a></li>
                                                 <li><a href="i_createQuestionpaper.jsp" class=""><i class="lnr lnr-pencil"></i>Create test</a></li>
-                                                <li><a href="i_viewResults.jsp" class=""><i class="lnr lnr-graduation-hat"></i>View test Results</a></li>
+                                                <li><a href="i_viewResults.jsp" class="active"><i class="lnr lnr-graduation-hat"></i>View test Results</a></li>
                                               <!--  <li><a href="i_answer.jsp" class=""><i class="lnr lnr-bubble"></i>Answer Students</a></li>-->
                                                 <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Interacts</a></li>
 						<% } %>
@@ -125,6 +125,27 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Courses</h3>
 								</div>
+    <% 
+                                             try
+                                             {
+                                             String msg = (String)session.getAttribute("msg");
+                                         if(msg.equals("sucess"))
+                                         {
+                                        %>   <%@ include file = "sucessalert.jsp" %>
+                                        <% }
+                                         if(msg.equals("certified"))
+                                         { %>
+<div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="<%  session.setAttribute("msg",""); %>"><span aria-hidden="true">&times;</span></button>
+	<i class="fa fa-check-circle"></i> You have already certified this student with this course
+</div> 
+<%
+        }
+}
+catch(Exception e){
+
+}
+                                         %>
 								<div class="panel-body">
 									<table class="table table-striped">
 										<thead>
@@ -132,7 +153,9 @@
 												<th>sl no.</th>
 												<th>course name</th>
                                                                                                 <th>Students</th>
-                                                                                                <th>Status</th>
+                                                                                                <th>Score</th>
+                                                                                                <th>Action</th>
+                                                                                                
 											</tr>
 										</thead>
 										<tbody><%//String i_id = (String)session.getAttribute("i_id");%>
@@ -147,12 +170,19 @@
                                                                                         <td><%out.print(i);i++;%></td>
                                                                                         <td><%out.print(rs.getString("c_name"));%></td>
                                                                                         <td><%out.print(rs1.getString("s_name"));%></td>
-                                                                                        <td><%out.print(rs1.getString("status"));%></td>
-                                                                                        <td><a href=i_approveAction.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%> class="btn btn-primary">Approve</a>   <a href=i_rejectAction.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%> class="btn btn-danger">Reject</a></td>
-                                                                                           
+                                                                                        <% ResultSet rst=DAL.DBConnect.SelectData("SELECT * FROM `testresults` where c_id='"+rs.getString("c_id")+"' and s_id='"+rs1.getString("s_id")+"' ");
+                                                                                        if(rst.next()==true){%><td><%out.print(rst.getString("score"));%></td>
+                                                                                                                    <td><a href=i_certify.jsp?s_id=<%out.print(rs1.getString("s_id"));%>&c_id=<%out.print(rs1.getString("c_id"));%>&i_id=<%out.print(i_id);%> class="btn btn-primary">Certify</a></td>
+                                                                               <% }
+else{
+%><td>Not Attended</td>
+    <td> </td><%
+}
+}
+                                                                               %>
                                                                                     </tr>
                                                                                     <% } 
-                                                                                    } %>
+                                                                                     %>
 										</tbody>
 									</table>
 								</div>

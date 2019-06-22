@@ -18,7 +18,8 @@
         String i_mob=request.getParameter("i_mob");
         String i_email=request.getParameter("i_email");
         String i_password=request.getParameter("i_password");
-       // String i_password_check=request.getParameter("i_password_check");
+        String i_wrkEmail=request.getParameter("i_wrkEmail");
+        String i_workInstitute=request.getParameter("i_workInstitute");
           
         
         if((String)session.getAttribute("type")!=null){
@@ -32,7 +33,7 @@
         else{
        
 
-             DAL.DBConnect.ExecuteQuery("insert into instructor (i_name,gender,i_mob,i_email,i_password,status) values ('"+i_name+"','"+gender+"','"+i_mob+"','"+i_email+"','"+i_password+"','"+status+"')");
+             DAL.DBConnect.ExecuteQuery("insert into instructor (i_name,gender,i_mob,i_email,i_password,status,i_workInstitute,i_wrkEmail) values ('"+i_name+"','"+gender+"','"+i_mob+"','"+i_email+"','"+i_password+"','"+status+"','"+i_workInstitute+"','"+i_wrkEmail+"')");
         session.setAttribute("msg","sucess");
          response.sendRedirect("instructortables.jsp");
             }
@@ -48,7 +49,7 @@ String status="Pending";
 else{
        
 
-             DAL.DBConnect.ExecuteQuery("insert into instructor (i_name,gender,i_mob,i_email,i_password,status) values ('"+i_name+"','"+gender+"','"+i_mob+"','"+i_email+"','"+i_password+"','"+status+"')");
+             DAL.DBConnect.ExecuteQuery("insert into instructor (i_name,gender,i_mob,i_email,i_password,status,i_workInstitute,i_wrkEmail) values ('"+i_name+"','"+gender+"','"+i_mob+"','"+i_email+"','"+i_password+"','"+status+"','"+i_workInstitute+"','"+i_wrkEmail+"')");
         session.setAttribute("msg","sucess");
          response.sendRedirect("Login.jsp");
 

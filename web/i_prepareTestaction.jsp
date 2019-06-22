@@ -23,7 +23,7 @@ String answer=request.getParameter("answer");
 String optiona=request.getParameter("optiona");
 String optionb=request.getParameter("optionb");
 String optionc=request.getParameter("optionc");
-String optiond=request.getParameter("optiona");
+String optiond=request.getParameter("optiond");
 int q_no;
 ResultSet rs=DBConnect.SelectData("SELECT count(*) FROM `test` WHERE c_id="+c_id);
 if(rs.next())

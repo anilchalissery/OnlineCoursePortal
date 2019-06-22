@@ -1,8 +1,10 @@
 <%-- 
-    Document   : s_completedtest
-    Created on : Jun 15, 2019, 11:03:58 AM
+    Document   : s_viewCertificates
+    Created on : Jun 20, 2019, 9:17:18 PM
     Author     : test
 --%>
+
+<%@page import="java.sql.ResultSet"%>
 <!doctype html>
 <html lang="en">
 
@@ -11,6 +13,7 @@
         <%
 		//HERE WE GETTING THE ATTRIBUTE DECLARED IN VALIDATE.JSP AND CHECKING IF IT IS NULL, THE USER WILL BE REDIRECTED TO LOGIN PAGE
 				String uid = (String)session.getAttribute("user");
+                                String s_id = (String)session.getAttribute("s_id");
 				if (uid == null)
 				{
 		%><!-- NOT A VALID USER, IF THE USER TRIES TO EXECUTE LOGGED IN PAGE DIRECTLY, ACCESS IS RESTRICTED -->
@@ -111,9 +114,8 @@
                                                  <li><a href="s_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
                                                  <li><a href="s_Opt_course.jsp" class=""><i class="fa fa-search"></i>Opt Course</a></li>
                                                 <li><a href="s_opted_courses.jsp" class=""><i class="fa fa-line-chart"></i>Opted Course</a></li>
-                                                <li><a href="s_test.jsp" class=""><i class="fa fa-line-chart"></i>Test</a></li>
-                                             
-                                                <li><a href="s_viewCertificates.jsp" class=""><i class="lnr lnr-graduation-hat"></i>Certifications</a></li>
+                                                <li><a href="s_test.jsp" class=""><i class="lnr lnr-spell-check"></i>Test</a></li>
+                                                <li><a href="s_viewCertificates.jsp" class="active"><i class="lnr lnr-spell-check"></i>Certifications</a></li>
                                                 <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Queries</a></li>
 							
 				
@@ -126,67 +128,59 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="container-fluid">
-					<div class="panel-heading">
-							<h3 class="panel-title">Your Responses have been saved</h3>
-							<p class="panel-subtitle">You will be awarded with certificate post evaluvation of your responses </p>
+					
+					<div class="row">
+						<div class="col-md-12">
+						<% ResultSet rs=DAL.DBConnect.SelectData(" SELECT * FROM `certified` where s_id='"+s_id+"'");
+                                                if(rs.next()){  
+                                            //    ResultSet rs1=DAL.DBConnect.SelectData("SELECT * FROM `certified` INNER JOIN student on certified.s_id=student.s_id where s_id='"+s_id+"'");
+                                             //   ResultSet rs2=DAL.DBConnect.SelectData("SELECT * FROM `certified` INNER JOIN instructor on certified.i_id=instructor.i_id");
+                                                ResultSet rs3=DAL.DBConnect.SelectData("SELECT * FROM `certified` INNER JOIN course on certified.c_id=course.c_id where certified.s_id='"+s_id+"' ");
+    %>
+                                                    <div class="panel-body">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>sl no.</th>
+												<th>course name</th>
+                                                                                                <th></th>
+                                                                                               
+											</tr>
+										</thead>
+										<tbody><%
+                                                                                     int i=1;
+                                                                                            while(rs3.next()){
+                                                                                               
+                                                                                            
+                                                                                    %>
+                                                                                     <tr>
+                                                                                        <td><%out.print(i);i++;%></td>
+                                                                                        <td><%out.print(rs3.getString("c_name"));%></td>
+                                                                                        <td><a href=s_certify.jsp?s_id=<%out.print(rs3.getString("s_id"));%>&c_id=<%out.print(rs3.getString("c_id"));%> class="btn btn-primary" target="_blank">Generate Certificate</a></td>
+                                                                                     </tr>
+                                                                                     <%
+                                                                                     }
+
+                                                                                     %>
+                                                                                </tbody>
+                                                                        </table>
+                                           <%     }
+                                                %>	
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
 						</div>
 						<div class="col-md-6">
-                                                    
-							<!-- MULTI CHARTS --> <!--
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">Projection vs. Realization</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
-								</div>
-								<div class="panel-body">
-									<div id="visits-trends-chart" class="ct-chart"></div>
-								</div>
-							</div> -->
-							<!-- END MULTI CHARTS -->
+							
 						</div>
 					</div>
-					
-						<div class="col-md-5">
-							<!-- TIMELINE --> <!--
-							<div class="panel panel-scrolling">
-								<div class="panel-heading">
-									<h3 class="panel-title">Recent User Activity</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
-								</div>
-								<div class="panel-body">
-									<ul class="list-unstyled activity-list">
-										<li>
-											<img src="assets/img/user1.png" alt="Avatar" class="img-circle pull-left avatar">
-											<p><a href="#">Michael</a> has achieved 80% of his completed tasks <span class="timestamp">20 minutes ago</span></p>
-										</li>
-										<li>
-											<img src="assets/img/user2.png" alt="Avatar" class="img-circle pull-left avatar">
-											<p><a href="#">Daniel</a> has been added as a team member to project <a href="#">System Update</a> <span class="timestamp">Yesterday</span></p>
-										</li>
-										<li>
-											<img src="assets/img/user3.png" alt="Avatar" class="img-circle pull-left avatar">
-											<p><a href="#">Martha</a> created a new heatmap view <a href="#">Landing Page</a> <span class="timestamp">2 days ago</span></p>
-										</li>
-										<li>
-											<img src="assets/img/user4.png" alt="Avatar" class="img-circle pull-left avatar">
-											<p><a href="#">Jane</a> has completed all of the tasks <span class="timestamp">2 days ago</span></p>
-										</li>
-										<li>
-											<img src="assets/img/user5.png" alt="Avatar" class="img-circle pull-left avatar">
-											<p><a href="#">Jason</a> started a discussion about <a href="#">Weekly Meeting</a> <span class="timestamp">3 days ago</span></p>
-										</li>
-									</ul>
-									<button type="button" class="btn btn-primary btn-bottom center-block">Load More</button>
-								</div>
-							</div> -->
-							<!-- END TIMELINE -->
+					<div class="row">
+						<div class="col-md-7">
+							
 						</div>
+						
 					</div>
 					<div class="row">
 						<div class="col-md-4">

@@ -37,9 +37,11 @@
                                         
                                          else
                                          {
-                                             String i_password=request.getParameter("i_password");
+                                            // String i_password=request.getParameter("i_password");
                                                String i_email=request.getParameter("i_email");
-                                               DAL:DBConnect.ExecuteQuery("UPDATE `instructor` SET `i_name`='"+i_name+"',`gender`='"+gender+"',`i_mob`='"+i_mob+"',`i_email`='"+i_email+"',`i_password`='"+i_password+"',status='"+status+"' WHERE i_id="+i_id);
+                                               String i_wrkEmail=request.getParameter("i_wrkEmail");
+        String i_workInstitute=request.getParameter("i_workInstitute");
+                                               DAL:DBConnect.ExecuteQuery("UPDATE `instructor` SET `i_name`='"+i_name+"',`gender`='"+gender+"',`i_mob`='"+i_mob+"',`i_email`='"+i_email+"',status='"+status+"', i_workInstitute='"+i_workInstitute+"', i_wrkEmail='"+i_wrkEmail+"' WHERE i_id="+i_id);
                                           //   session.setAttribute("msg","sucess");
                                              response.sendRedirect("instructortables.jsp");
                                          }

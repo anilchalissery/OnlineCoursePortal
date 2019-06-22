@@ -143,9 +143,9 @@
 									<br>
                                                                         <input type="email" class="form-control" placeholder="Email" name="i_email" required>
 									<br>
-                                                                        <input type="text" class="form-control" placeholder="Currently Working Institution" name="workinginstitution" required>
+                                                                        <input type="text" class="form-control" placeholder="Currently Working Institution" name="i_workInstitute" required>
 									<br>
-                                                                        <input type="text" class="form-control" placeholder="work address" name="workaddress" required>
+                                                                        <input type="email" class="form-control" placeholder="working institute's email address" name="i_wrkEmail" required>
 									<br>
 									<input type="password" class="form-control" placeholder="password"  name="i_password" required>
 									<br>

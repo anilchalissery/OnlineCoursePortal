@@ -112,7 +112,9 @@
 						<li><a href="s_home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                                                  <li><a href="s_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
                                                  <li><a href="s_Opt_course.jsp" class=""><i class="fa fa-search"></i>Opt Course</a></li>
-                                                <li><a href="s_opted_courses.jsp" class="active"><i class="fa fa-line-chart"></i>Opted Course</a></li>
+                                                <li><a href="s_opted_courses.jsp" class=""><i class="fa fa-line-chart"></i>Opted Course</a></li>
+                                                <li><a href="s_test.jsp" class="active"><i class="lnr lnr-spell-check"></i>Test</a></li>
+                                                <li><a href="s_viewCertificates.jsp" class=""><i class="lnr lnr-graduation-hat"></i>Certifications</a></li>
                                                 <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Queries</a></li>
 							
 				
@@ -140,7 +142,7 @@ catch(Exception e){
 
 }
                                          %>
-					<h3 class="page-title">Update Student Data</h3>
+					<h3 class="page-title">Select Course</h3>
 					<div class="row">
 						<div class="col-md-12">
 							<!-- BUTTONS -->
@@ -164,6 +166,7 @@ catch(Exception e){
 										<select name="c_id" class="form-control">
                                                                                     <%while(rs.next()){
                                                                                         ResultSet rs8=DBConnect.SelectData("SELECT * FROM `course` WHERE c_id="+rs.getString("c_id"));
+                                                                                    
                                                                             while(rs8.next()){%>
                             <option value="<%out.print(rs8.getString("c_id"));%>"><%out.print(rs8.getString("c_name"));%></option>
                 <% } } %>        </select>

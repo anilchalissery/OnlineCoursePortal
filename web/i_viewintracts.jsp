@@ -99,6 +99,8 @@
                                                 <li><a href="i_addCourse.jsp" class=""><i class="lnr lnr-file-add"></i>Add Course</a></li>
                                                 <li><a href="i_viewcourses.jsp" class=""><i class="lnr lnr-enter"></i>View added Courses</a></li>
                                                 <li><a href="i_viewStudents.jsp" class=""><i class="lnr lnr-users"></i>View Students</a></li>
+                                                <li><a href="i_createQuestionpaper.jsp" class=""><i class="lnr lnr-pencil"></i>Create test</a></li>
+                                                <li><a href="i_viewResults.jsp" class=""><i class="lnr lnr-graduation-hat"></i>View test Results</a></li>
                                               <!--  <li><a href="i_answer.jsp" class=""><i class="lnr lnr-bubble"></i>Answer Students</a></li>-->
                                                 <li><a href="i_viewintracts.jsp" class="active"><i class="lnr lnr-bubble"></i>Interacts</a></li>
 						<% } %>
@@ -117,6 +119,8 @@
                                                  <li><a href="s_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
                                                  <li><a href="s_Opt_course.jsp" class=""><i class="fa fa-search"></i>Opt Course</a></li>
                                                 <li><a href="s_opted_courses.jsp" class=""><i class="fa fa-line-chart"></i>Opted Course</a></li>
+                                                <li><a href="s_test.jsp" class=""><i class="lnr lnr-spell-check"></i>Test</a></li>
+                                                <li><a href="s_viewCertificates.jsp" class=""><i class="lnr lnr-graduation-hat"></i>Certifications</a></li>
                                                 <li><a href="i_viewintracts.jsp" class="active"><i class="lnr lnr-bubble"></i>Queries</a></li>
 							
 				

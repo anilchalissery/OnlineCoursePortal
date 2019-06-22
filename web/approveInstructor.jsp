@@ -138,7 +138,8 @@ catch(Exception e){
                                                                                                 <th>Gender</th>
                                                                                                 <th>Mobile No</th>
                                                                                                 <th>Email</th>
-                                                                                               
+                                                                                               <th>Currently works in</th>
+                                                                                                <th>Institute's Email</th>
                                                                                                 <th>Status</th>
                                                                                                 
                                                                                                 <th></th>
@@ -154,7 +155,8 @@ catch(Exception e){
                                                                                                             <td><%out.print(rs2.getString("gender")); %></td>
                                                                                                              <td><%out.print(rs2.getString("i_mob")); %></td>
                                                                                                             <td><%out.print(rs2.getString("i_email")); %></td>
-                                                                                                           
+                                                                                                           <td><%out.print(rs2.getString("i_workInstitute")); %></td>
+                                                                                                          <td><%out.print(rs2.getString("i_wrkEmail")); %></td>
                                                                                                            <td><%out.print(rs2.getString("status")); %></td>
                                                                                                             <td><a href=approveInstructorAction.jsp?i_id=<% out.print(rs2.getString("i_id")); %> class="btn btn-primary">Approve</a></td>
                                                                                                             <td><a href=rejectInstructorAction.jsp?i_id=<% out.print(rs2.getString("i_id")); %> class="btn btn-danger">Reject</a></td>

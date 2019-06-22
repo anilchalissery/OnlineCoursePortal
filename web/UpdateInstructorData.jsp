@@ -140,8 +140,14 @@
                                                                         <select name="status" class="form-control">
                                                                             <option value="Pending" >Pending</option>
                                                                             <option value="Approved" >Approved</option>
-                                                                        </select><br>
-									<input type="password" class="form-control" placeholder="password"  name="i_password" value="<%out.print(rs.getString("i_password"));%>" required>
+                                                                        </select>
+                                                                        <br>
+                                                                        <input type="text" class="form-control" placeholder="Currently Working Institution" name="i_workInstitute" required>
+									<br>
+                                                                        <input type="email" class="form-control" placeholder="working institute's email address" name="i_wrkEmail" required>
+									<br>
+									
+									<!--<input type="password" class="form-control" placeholder="password"  name="i_password" value="<%//out.print(rs.getString("i_password"));%>" required>-->
 									<br><input type="hidden" name="i_id" value="<%out.print(rs.getString("i_id"));%>">
                                                                         <input type="submit" value="Register" class="btn btn-primary">
 									

@@ -53,42 +53,16 @@
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
 				</div>
-				<form class="navbar-form navbar-left">
-					<div class="input-group">
-						<input type="text" value="" class="form-control" placeholder="Search dashboard...">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
-					</div>
-				</form>
+				
 				
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-								<i class="lnr lnr-alarm"></i>
-								<span class="badge bg-danger">5</span>
-							</a>
-							<ul class="dropdown-menu notifications">
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
-								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
-								<li><a href="#" class="more">See all notifications</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Basic Use</a></li>
-								<li><a href="#">Working With Data</a></li>
-								<li><a href="#">Security</a></li>
-								<li><a href="#">Troubleshooting</a></li>
-							</ul>
-						</li>
+						
+						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><%out.print(uid);%></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="s_profile.jsp"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 								<li><a href="Logout.jsp"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
@@ -107,8 +81,10 @@
 					<ul class="nav">
 						<li><a href="s_home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                                                  <li><a href="s_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
-                                                 <li><a href="s_Opt_course.jsp" class="active"><i class="fa fa-search"></i>Opt Course</a></li>
+                                                 <li><a href="s_Opt_course.jsp" class=""><i class="fa fa-search"></i>Opt Course</a></li>
                                                 <li><a href="s_opted_courses.jsp" class=""><i class="fa fa-line-chart"></i>Opted Course</a></li>
+                                                <li><a href="s_test.jsp" class="active"><i class="lnr lnr-spell-check"></i>Test</a></li>
+                                                <li><a href="s_viewCertificates.jsp" class=""><i class="lnr lnr-graduation-hat"></i>Certifications</a></li>
                                                 <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Queries</a></li>
 							
 				
@@ -150,7 +126,9 @@
                                                                      <input type="text" class="form-control" value="<%out.print(rs.getString("c_name"));%>">           
                                                                       <br>
                                                                      <%ResultSet rs2=DBConnect.SelectData("SELECT * FROM `test` WHERE c_id="+c_id); 
+                                                                     
                                                                      int i=1;
+                                                                     if(rs2.next()){
                                                                          while(rs2.next()){%>
                                                                            <br><input type="text" class="form-control" name="<%out.print(rs2.getString("test_id"));%>" value="<%out.print(rs2.getString("q_no")+". ");%><%out.print(rs2.getString("Question"));%>">               
                                                                          <br>  <input type="radio"  name="q<%out.print(i);%>" value="1"><%out.print(rs2.getString("oa"));%>
@@ -158,11 +136,15 @@
                                                                            <input type="radio"  name="q<%out.print(i);%>" value="3"><%out.print(rs2.getString("oc"));%>
                                                                            <input type="radio"  name="q<%out.print(i);%>" value="4"><%out.print(rs2.getString("od"));%><br>
                                                                 <%       i++;  }
+
+
                                                                              %>           
                                                                              <input type="hidden" name="noQ" value="<%out.print(i-1);%>">
                                                                              <input type="hidden" name="c_id" value="<%out.print(c_id);%>">
                                                                              <br><input type="Submit" class="btn btn-primary">
-									
+								<%	}
+else{ %> <p>Test for this course is not added currently .</p><%
+} %>
                                                                     </form>
 								</div>
 							</div>

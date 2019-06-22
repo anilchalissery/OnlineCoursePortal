@@ -109,7 +109,30 @@
 		</nav>
 		<!-- END NAVBAR -->
 		<!-- LEFT SIDEBAR -->
-		<%@ include file = "i_left_sidebar.jsp" %>
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll"><%String i_id = (String)session.getAttribute("i_id");
+                    ResultSet rss=DBConnect.SelectData("select * from instructor where i_id="+i_id);
+                    rss.next();
+                    String status = rss.getString("status");
+                    %>
+				<nav>
+					<ul class="nav">
+						<li><a href="i_home.jsp" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                                                <li><a href="i_profile.jsp" class=""><i class="lnr lnr-user"></i>View Profile</a></li>
+						<%if(status.equals("Approved")){%><li><a href="i_approveStudents.jsp" class=""><i class="lnr lnr-alarm"></i>Approve Registration</a></li>
+				                
+                                                <li><a href="i_addCourse.jsp" class=""><i class="lnr lnr-file-add"></i>Add Course</a></li>
+                                                <li><a href="i_viewcourses.jsp" class="active"><i class="lnr lnr-enter"></i>View added Courses</a></li>
+                                                <li><a href="i_viewStudents.jsp" class=""><i class="lnr lnr-users"></i>View Students</a></li>
+                                                <li><a href="i_createQuestionpaper.jsp" class=""><i class="lnr lnr-pencil"></i>Create test</a></li>
+                                                <li><a href="i_viewResults.jsp" class=""><i class="lnr lnr-graduation-hat"></i>View test Results</a></li>
+                                              <!--  <li><a href="i_answer.jsp" class=""><i class="lnr lnr-bubble"></i>Answer Students</a></li>-->
+                                                <li><a href="i_viewintracts.jsp" class=""><i class="lnr lnr-bubble"></i>Interacts</a></li>
+						<% } %>
+					</ul>
+				</nav>
+			</div>
+		</div>
 		<!-- END LEFT SIDEBAR -->
 		<!-- MAIN -->
 		<div class="main">
