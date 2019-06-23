@@ -165,6 +165,9 @@
                                                                                 </tbody>
                                                                         </table>
                                            <%     }
+else{
+ %> <p>You have no certificates currently</p><%
+}
                                                 %>	
                                                     
                                                     

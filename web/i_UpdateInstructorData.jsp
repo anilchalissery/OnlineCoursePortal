@@ -4,6 +4,7 @@
     Author     : test
 --%>
 
+<%@page import="DAL.DBConnect"%>
 <%@page import="java.sql.ResultSet"%>
 <!doctype html>
 <html lang="en">
